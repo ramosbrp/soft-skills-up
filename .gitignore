@@ -1,0 +1,23 @@
+# Dependências
+/node_modules/
+/vendor/
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+
+# Logs
+*.log
+
+# Arquivos de configuração sensíveis
+.env
+
+# Cache do Sass
+.sass-cache/
+
+# Mapas de arquivo
+*.css.map
+*.js.map
