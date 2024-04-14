@@ -30,20 +30,3 @@ body{
     width: 100vw; /* view width */
 }
 
-header{
-    display: flex;
-    background-color: var(--preto);
-    width: 100vw;
-    height: 200px;
-    
-}
-
-header nav{
-    justify-self: center;
-    margin: 0 auto;
-    width: 300px;
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    margin-top: 60px;
-}
