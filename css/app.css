@@ -1,0 +1,39 @@
+main{
+    display: flex;
+    flex-flow: row;
+}
+
+#app-section1{
+    background-color: #171717;
+    width: 360px;
+    height: 100vh;
+}
+
+#app-section2{
+    background-color: #212121;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+#app-escolhas{
+    height: 80%;
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: start;
+}
+
+#app-escolhas>div:nth-child(2){
+    
+}
+
+.app-opcoes{
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: center;
+}
