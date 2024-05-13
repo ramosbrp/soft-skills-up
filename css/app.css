@@ -37,3 +37,7 @@ main{
     align-items: center;
     justify-content: center;
 }
+
+#enviar-resposta{
+    color: #212121;
+}
