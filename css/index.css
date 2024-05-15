@@ -51,6 +51,14 @@ header nav a {
     grid-area: section3;
 }
 
+.section4 {
+    grid-area: section4;
+}
+
+.footer{
+    grid-area: footer;
+}
+
 main {
     width: 100vw;
     height: 100vh;
@@ -63,6 +71,8 @@ main {
     grid-template-areas:
         "section1 section1 section2"
         "section3 section3 section3"
+        "section4 section4 section4"
+        "footer footer footer"
     ;
 }
 
@@ -82,17 +92,17 @@ main {
     align-items: center;
 }
 
-#section1>div:nth-child(2) div {
+.home-imagens-lado-a-lado {
     display: flex;
     flex-flow: row;
 }
 
-#section1>div>div>img:nth-of-type(2) {
+.home-imagens-lado-a-lado>img:nth-of-type(2) {
     z-index: 1;
     margin-left: -30px;
 }
 
-#section1>div>div>img:nth-of-type(3) {
+.home-imagens-lado-a-lado>img:nth-of-type(3) {
     z-index: 2;
     margin-left: -30px;
 }
@@ -112,7 +122,7 @@ main {
     border-radius: 12px;
     background-image: url(../images/comece-agora.png);
     background-repeat: no-repeat;
-    background-position: right center;
+    background-position: right;
     background-size: auto;
 }
 
@@ -153,26 +163,165 @@ main {
 
 #veja-nossos-planos {
     background-color: #D9D9D9;
-    width: 450px;
+    width: 600px;
+    /* max-width: 450px; */
     height: 295px;
     border-radius: 0 30px 30px 0;
     border: solid #1C1718 20px;
     border-left: none;
+
+    background-image: url(../images/veja-nossos-planos.png);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
+#veja-nossos-planos>button:nth-child(1) {
+    background-color: #1C1718;
+    border-radius: 30px;
+    width: 160px;
+    margin-left: 10px;
+    margin-top: 186px;
 }
 
 #comece-sua-trajetoria {
-    background-color: #D9D9D9;
+    background-color: #1C1718;
     width: 100%;
     height: 295px;
     border-radius: 30px 30px 30px 30px;
-    border: solid #1C1718 20px;
+}
+
+#comece-sua-trajetoria p {
+    color: #1C1718;
+
+}
+
+#comece-sua-trajetoria div>p:nth-child(1) {
+    font-size: 15px;
+    font-weight: 400;
+    margin-top: 10px;
+}
+
+#comece-sua-trajetoria div>p:nth-child(2) {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+#comece-sua-trajetoria>div:nth-child(1) {
+    background-color: #D9D9D9;
+    width: 90%;
+    height: 200px;
+    margin: 30px auto;
+    border-radius: 30px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#comece-sua-trajetoria div>div:last-child {
+    position: relative;
+    top: 20px;
 }
 
 #temas {
     background-color: #D9D9D9;
-    width: 450px;
+    width: 600px;
     height: 295px;
     border-radius: 30px 30px 30px 30px;
     border: solid #1C1718 20px;
     border-right: none;
+}
+
+/* CARROSSEL */
+#section4 {
+    background-color: #1C1718;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section4 div{
+    color: #e44320;
+}
+
+.carousel-container {
+    position: relative;
+    width: 369px;
+    height: 383px;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+}
+
+.carousel-item {
+    width: 300px;
+    height: 300px;
+    background-color: orange;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 24px; */
+    /* color: white !important; */
+    background-color: #E44320;
+    font-weight: 700;
+
+}
+
+.carousel-item div{
+    color: #D9D9D9;
+}
+
+.carousel-item > div:nth-child(2){
+    font-size: 13px;
+    font-family: poppins;
+}
+
+.carousel-item>div:nth-child(3){
+    font-size: 26px;
+}
+
+.carousel-item>div:nth-child(4){
+    font-size: 100px;
+}
+
+.carousel-item>div:nth-child(4) span{
+    font-size: 23px;
+}
+
+.carousel-item>div:nth-child(5), .carousel-item>div:nth-child(6){
+    font-size: 12px;
+}
+
+.carousel-item>div:nth-child(7) button{
+    border-radius: 30px;
+    color: #E44320;
+    width: 143px;
+    height: 35px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.arrow {
+    cursor: pointer;
+    font-size: 30px;
+    color: black;
+    user-select: none;
+}
+
+.left-arrow {
+    position: absolute;
+    left: 10px;
+}
+
+.right-arrow {
+    position: absolute;
+    right: 10px;
 }
