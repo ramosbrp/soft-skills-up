@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Usuários</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4">Consulta de Usuários</h1>
+    
+    <!-- Lista de Usuários -->
+    <table class="table" id="userTable">
+      <thead>
+        <tr>
+          <th>Nome de Usuário</th>
+          <th>Email</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- linhas de usuário aqui -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Função para exibir os usuários cadastrados na tabela de usuários
+    function displayUsers() {
+      var userTableBody = document.querySelector("#userTable tbody");
+
+      // Limpa as linhas da tabela antes de adicionar os usuários
+      userTableBody.innerHTML = "";
+
+      // Itera sobre os itens do localStorage
+      for (var i = 0; i < localStorage.length; i++) {
+        var username = localStorage.key(i); // Obtém o nome de usuário
+        var userDetails;
+        
+        // Tenta analisar os detalhes do usuário do localStorage
+        try {
+          userDetails = JSON.parse(localStorage.getItem(username)); // Obtém os detalhes do usuário
+        } catch (error) {
+          console.error("Erro ao analisar os detalhes do usuário:", error);
+          continue; // Pula para o próximo usuário se ocorrer um erro de análise JSON
+        }
+
+        // Cria uma nova linha na tabela para o usuário
+        var newRow = userTableBody.insertRow();
+        newRow.innerHTML = `
+          <td>${username}</td>
+          <td>${userDetails.email}</td>
+          <td><button class="btn btn-sm btn-danger deleteBtn">Excluir</button></td>
+        `;
+      }
+
+      // Adiciona o evento de clique aos botões de exclusão
+      var deleteButtons = document.querySelectorAll(".deleteBtn");
+      deleteButtons.forEach(function(button) {
+        button.addEventListener("click", function() {
+          var usernameToDelete = button.parentElement.parentElement.cells[0].textContent;
+          localStorage.removeItem(usernameToDelete); // Remove o usuário do localStorage
+          displayUsers(); // Atualiza a tabela de usuários
+        });
+      });
+    }
+
+    window.onload = displayUsers;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

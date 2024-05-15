@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Atividades de Usuário</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="my-4">Registro de Atividades de Usuário</h1>
+    
+    <!-- Tabela de Registro de Atividades -->
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Data e Hora</th>
+          <th>Evento</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody id="logTableBody">
+        <!-- Linhas de registro de atividades serão adicionadas aqui -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+
+// Função para recuperar e exibir as informações de login do localStorage
+function displayLoginActivity() {
+  var logTableBody = document.getElementById('logTableBody');
+
+  // Recupera as informações de login do localStorage
+  var loginLog = JSON.parse(localStorage.getItem('loginLog')) || [];
+
+  // Limpa a tabela antes de adicionar as novas entradas
+  logTableBody.innerHTML = '';
+
+  // Itera sobre os registros de atividades e os adiciona à tabela
+  loginLog.forEach(function(activity) {
+    var row = logTableBody.insertRow();
+    row.insertCell().textContent = activity.username;
+    row.insertCell().textContent = new Date(activity.loginTime).toLocaleString();
+  });
+}
+
+// Chama a função para exibir as informações de login quando a página é carregada
+window.onload = displayLoginActivity;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
