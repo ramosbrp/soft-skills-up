@@ -1,4 +1,3 @@
-// script.js
 let currentIndex = 0;
 const items = document.querySelectorAll('.carousel-item');
 const totalItems = items.length;
@@ -25,3 +24,4 @@ document.querySelector('.right-arrow').addEventListener('click', () => {
 
 // Initialize the carousel
 updateCarousel();
+

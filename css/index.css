@@ -1,44 +1,9 @@
-header {
-    display: flex;
-    align-items: center;
-    background-color: var(--preto);
-    width: 100vw;
-    height: 200px;
-    padding: 10px;
+body{
 }
 
-header nav {
-    justify-self: center;
-    margin: 0 auto;
-    width: 300px;
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-}
 
-header a {
-    text-decoration: none;
-}
 
-header a {
-    font-size: 22px;
-}
-
-header nav a {
-    color: white;
-}
-
-#login {
-    width: 100px;
-    display: flex;
-    align-items: center;
-}
-
-#login a {
-    text-decoration: none;
-    color: white;
-}
-
+/* GRID-AREA */
 .section1 {
     grid-area: section1;
 }
@@ -55,13 +20,9 @@ header nav a {
     grid-area: section4;
 }
 
-.footer{
-    grid-area: footer;
-}
 
 main {
     width: 100vw;
-    height: 100vh;
     background-color: var(--preto);
     color: var(--branco);
 
@@ -176,12 +137,13 @@ main {
     background-size: contain;
 }
 
-#veja-nossos-planos>button:nth-child(1) {
+#veja-nossos-planos>a:nth-child(1) button {
     background-color: #1C1718;
     border-radius: 30px;
     width: 160px;
     margin-left: 10px;
     margin-top: 186px;
+    text-decoration: none;
 }
 
 #comece-sua-trajetoria {
@@ -225,13 +187,41 @@ main {
 }
 
 #temas {
-    background-color: #D9D9D9;
+    background-color: #1C1718;
     width: 600px;
     height: 295px;
     border-radius: 30px 30px 30px 30px;
-    border: solid #1C1718 20px;
     border-right: none;
+    display: flex;
+    flex-flow: column;
+    border: solid #1C1718 20px;
 }
+
+.temas-border{
+    border: .05px solid #D9D9D9;
+    border-radius: 30px;
+}
+
+.temas-icone-redondo{
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.temas-buton1{
+    text-align: center;
+    background-color: #1C1718;
+    width: 160px;
+    height: 32px;
+}
+
+.claro{
+    background-color: #D9D9D9;
+    color: #1C1718;
+}
+
 
 /* CARROSSEL */
 #section4 {
@@ -324,4 +314,13 @@ main {
 .right-arrow {
     position: absolute;
     right: 10px;
+}
+
+footer{
+    height: 10vh;
+    background-color: #1C1718;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
 }
