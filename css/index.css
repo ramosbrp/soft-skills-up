@@ -194,6 +194,7 @@ main {
     border-right: none;
     display: flex;
     flex-flow: column;
+    justify-content: space-around;
     border: solid #1C1718 20px;
 }
 
@@ -222,6 +223,19 @@ main {
     color: #1C1718;
 }
 
+.temas-div-flex-column{
+    display: flex;
+    flex-flow: row;
+
+}
+
+.temas-div-flex-column >div:nth-child(2){
+    margin-left: 50px;
+}
+
+#temas >div:nth-child(2){
+    margin-left: 120px;
+}
 
 /* CARROSSEL */
 #section4 {
