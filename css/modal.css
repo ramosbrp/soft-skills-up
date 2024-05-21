@@ -1,8 +1,8 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-}
+} */
 
 .navbar {
     display: flex;
@@ -29,6 +29,7 @@ body {
     max-width: 80%; /* Define a largura máxima do modal */
     max-height: 1000px; /* Define a altura máxima do modal */
     overflow: hidden;
+    border: 1px solid black;
 }
 
 .modal-content {
