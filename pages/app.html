@@ -22,15 +22,19 @@
             <a href="#" class="">Preços</a>
             <a href="#" class="">Skills</a>
         </nav>
-        <div id="login" >
+        <div class="score"  >
+            Score: <span id="score" >0</span>
+        </div>
+
+        <div id="login">
 
             <!-- Link de Login visível quando não logado -->
-            <a href="" id="loginLink" >Login
+            <a href="" id="loginLink">Login
                 <img src="/assets/login.png" alt="">
             </a>
         </div>
 
-         <!-- Menu do usuário visível quando logado -->
+        <!-- Menu do usuário visível quando logado -->
         <div id="userMenu" class="user-menu" style="display: none;">
             <button id="userButton">Usuário <img src="../images/temas-menu.png" alt="Abrir menu"></button>
             <div id="userDropdown" class="dropdown-content" style="display: none;">
@@ -42,6 +46,12 @@
     </header>
 
     <main class="main">
+
+        <section id="app-section1">
+            <h2>Bem-vindo ao Quiz!</h2>
+            <p>Complete as perguntas abaixo para testar seus conhecimentos.</p>
+            <p><strong>Pergunta 1 de 5</strong></p>
+        </section>
 
         <section id="app-section1">
 
@@ -60,27 +70,27 @@
                         entrega do projeto.</p>
                 </div>
                 <div>
-                    <div class="app-opcoes">
-                        <input type="checkbox">
+                    <div class="app-opcoes" data-score="10" >
+                        <input type="radio" name="quiz-option" class="quiz-option">
                         <p><b>Convocar uma Reunião de Emergência:</b> Chamar uma reunião de toda a equipe para discutir
                             abertamente as preocupações, esclarecer todos os mal-entendidos e realinhar as expectativas.
                             Promover um ambiente onde todos possam expressar suas opiniões e preocupações.</p>
                     </div>
-                    <div class="app-opcoes">
-                        <input type="checkbox">
+                    <div class="app-opcoes" data-score="7" >
+                        <input type="radio" name="quiz-option" class="quiz-option">
                         <p><b>Avaliação Individual:</b> Agendar reuniões individuais com cada membro da equipe para
                             entender suas perspectivas e desafios pessoais. Usar essas informações para fazer ajustes
                             necessários sem criar um palco para possíveis conflitos.</p>
                     </div>
-                    <div class="app-opcoes">
-                        <input type="checkbox">
+                    <div class="app-opcoes" data-score="5" >
+                        <input type="radio" name="quiz-option" class="quiz-option"  >
                         <p><b>Enviar um E-mail de Esclarecimento:</b> Redigir e enviar um e-mail detalhado para toda a
                             equipe, esclarecendo os prazos e responsabilidades de cada um. Incluir no e-mail uma seção
                             de FAQ para responder às perguntas comuns e incentivar os membros da equipe a entrar em
                             contato diretamente para esclarecimentos adicionais.</p>
                     </div>
-                    <div class="app-opcoes">
-                        <input type="checkbox">
+                    <div class="app-opcoes" data-score="8">
+                        <input type="radio" name="quiz-option" class="quiz-option" >
                         <p><b>Implementar uma Ferramenta de Gestão de Projetos:</b> Introduzir uma ferramenta de gestão
                             de projetos que possa ajudar a equipe a visualizar suas tarefas, prazos e a carga de
                             trabalho de cada membro, promovendo uma melhor comunicação e organização.</p>
@@ -89,7 +99,7 @@
             </div>
 
             <div>
-                <button id="enviar-resposta" >ok</button>
+                <button id="enviar-resposta">Enviar Resposta</button>
             </div>
         </section>
     </main>
@@ -97,6 +107,7 @@
 
     <!-- <script src="../js/script.js"></script> -->
     <script src="../js/header.js"></script>
+    <script src="../js/app.js"></script>
 </body>
 
 </html>
