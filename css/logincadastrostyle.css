@@ -1,0 +1,609 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+input {
+    font-family: "Poppins", sans-serif;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    background-color: #000000;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.forms-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.sign-up-form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.signin-signup {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 75%;
+    width: 50%;
+    transition: 1s 0.7s ease-in-out;
+    display: grid;
+    grid-template-columns: 1fr;
+    z-index: 5;
+}
+
+form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0rem 5rem;
+    transition: all 0.2s 0.7s;
+    overflow: hidden;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+}
+
+form.sign-up-form {
+    opacity: 0;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    transition: all 0.2s 0.7s;
+    overflow: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+    align-items: center;
+
+}
+
+form.sign-in-form {
+    z-index: 2;
+
+}
+
+.title {
+    position: sticky;
+    top: 0;
+    background-color: black;
+    text-align: center;
+    padding: 0px 50px;
+    z-index: 10;
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 2.2rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+/* Estilo para o contêiner de campo de entrada */
+.input-field {
+    max-width: 380px;
+    width: 90%;
+    background-color: #f0f0f0;
+    margin: 5px;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    grid-template-columns: 15% 85%;
+    padding: 0 0.3rem;
+    align-items: center;
+    position: relative;
+}
+
+.placeholder {
+    margin-left: 45px;
+}
+
+/* Estilo para o ícone dentro do campo de entrada */
+.input-field i {
+    margin: 0px 25px;
+    text-align: center;
+    line-height: 55px;
+    color: #acacac;
+    transition: 0.5s;
+    font-size: 1.1rem;
+}
+
+/* Estilo para o campo de entrada */
+.input-field input {
+    width: 100%;
+    padding: 1px;
+    background: none;
+    border: none;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+    transition: border-color 0.3s ease;
+}
+
+/* Estilo para o placeholder */
+.input-field input::placeholder {
+    color: #aaa;
+    font-weight: 500;
+}
+
+.login-field {
+    margin: 0px 50px;
+    grid-column: 1 / -1;
+    /* O campo Login ocupa toda a largura do formulário */
+}
+
+/* Estilo para a mensagem de erro */
+.error-message {
+    color: rgb(255, 0, 0);
+    font-size: 0.875em;
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    /* Manter em uma linha até quebra necessária */
+}
+
+.success-message {
+    color: green;
+    /* Cor do texto para mensagens de sucesso */
+    font-size: 0.875em;
+    position: absolute;
+    bottom: -22px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+.is-valid {
+    border-color: green;
+    /* Cor da borda para campos válidos */
+}
+
+/* Estilo para as notificações */
+span.notification {
+    display: block;
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+span.notification.is-valid {
+    color: green;
+}
+
+span.notification.is-invalid {
+    color: red;
+}
+
+.social-text {
+    padding: 0.7rem 0;
+    font-size: 1rem;
+}
+
+.social-media {
+    display: flex;
+    justify-content: center;
+}
+
+.social-icon {
+    height: 46px;
+    width: 46px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0.45rem;
+    color: #333;
+    border-radius: 50%;
+    border: 1px solid #333;
+    text-decoration: none;
+    font-size: 1.1rem;
+    transition: 0.3s;
+}
+
+.social-icon:hover {
+    color: #4481eb;
+    border-color: #4481eb;
+}
+
+.redsenha {
+    color: blue;
+    padding: 2px;
+}
+
+.redsenha:hover {
+    color: #fe7504;
+    padding: 3px;
+    transition: 1.8s ease-in-out;
+}
+
+.limpar {
+    color: blue;
+    background: none;
+    border-radius: 25px;
+    margin: auto;
+    /* Isso centraliza horizontalmente */
+    margin-left: 75%;
+    /* Adiciona espaço acima do botão */
+    display: block;
+    /* Garante que o botão seja exibido como um bloco */
+
+}
+
+.limpar:hover {
+    color: #fe7504;
+    transition: 0.5s ease-in-out;
+    margin: auto;
+    /* Isso centraliza horizontalmente */
+    margin-left: 75%;
+    /* Adiciona espaço acima do botão */
+    display: block;
+    /* Garante que o botão seja exibido como um bloco */
+
+}
+
+.btn {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #fe7504;
+    border: none;
+    outline: none;
+    height: 49px;
+    border-radius: 49px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin: 10px 0;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.btn:hover {
+    background-color: #4d84e2;
+}
+
+.panels-container {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.container:before {
+    content: "";
+    position: absolute;
+    height: 2000px;
+    width: 2000px;
+    top: -10%;
+    right: 48%;
+    transform: translateY(-50%);
+    background-image: linear-gradient(-45deg, #ff921d 0%, #b04900 100%);
+    transition: 1.8s ease-in-out;
+    border-radius: 50%;
+    z-index: 6;
+}
+
+.image {
+    width: 100%;
+    transition: transform 1.1s ease-in-out;
+    transition-delay: 0.4s;
+}
+
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    text-align: center;
+    z-index: 6;
+}
+
+.left-panel {
+
+    pointer-events: all;
+    padding: 3rem 17% 2rem 12%;
+}
+
+.right-panel {
+    pointer-events: none;
+    padding: 3rem 12% 2rem 17%;
+}
+
+.panel .content {
+    color: #fff;
+    transition: transform 0.9s ease-in-out;
+    transition-delay: 0.6s;
+}
+
+.panel h3 {
+    font-weight: 600;
+    line-height: 1;
+    font-size: 1.5rem;
+}
+
+.panel p {
+    font-size: 0.95rem;
+    padding: 0.7rem 0;
+}
+
+.btn.transparent {
+    margin: 10PX;
+    color: #fe7504;
+    background: #ffffff;
+    border: 2px solid #ffffff;
+    width: 130px;
+    height: 41px;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.right-panel .image,
+.right-panel .content {
+    transform: translateX(800px);
+}
+
+input:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+
+/* ANIMATION */
+
+.container.sign-up-mode:before {
+    transform: translate(100%, -50%);
+    right: 52%;
+}
+
+.container.sign-up-mode .left-panel .image,
+.container.sign-up-mode .left-panel .content {
+    transform: translateX(-800px);
+}
+
+.container.sign-up-mode .signin-signup {
+    left: 25%;
+}
+
+.container.sign-up-mode form.sign-up-form {
+    opacity: 1;
+    z-index: 2;
+}
+
+.container.sign-up-mode form.sign-in-form {
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.sign-up-mode .right-panel .image,
+.container.sign-up-mode .right-panel .content {
+    transform: translateX(0%);
+}
+
+.container.sign-up-mode .left-panel {
+    pointer-events: none;
+}
+
+.container.sign-up-mode .right-panel {
+    pointer-events: all;
+}
+
+@media (max-width: 870px) {
+    .input-field {
+        background-color: #f0f0f0;
+        margin: 50px auto;
+        /* Centraliza horizontalmente */
+        height: 55px;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        padding: 0 15px;
+        /* Adiciona um espaçamento interno */
+    }
+
+    .input-field input {
+        flex: 1;
+        /* Ocupa todo o espaço disponível */
+        border: none;
+        background: none;
+        outline: none;
+    }
+
+    form.sign-up-form {
+        grid-template-columns: 1fr;
+        /* Alterado para uma única coluna */
+        gap: 10px;
+        overflow-y: auto;
+    }
+
+    .signin-signup {
+        width: 100%;
+        top: 95%;
+        transform: translate(-50%, -100%);
+        transition: none;
+    }
+
+    .signin-signup,
+    .container.sign-up-mode .signin-signup {
+        left: 50%;
+    }
+
+    .panels-container {
+        grid-template-columns: 2fr;
+        grid-template-rows: 1fr 2fr 1fr;
+    }
+
+    .panel {
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        grid-column: 1 / 1;
+        height: auto;
+    }
+
+    .right-panel {
+        grid-row: 3 / 4;
+        padding: 1rem, 10%;
+    }
+
+    .left-panel {
+        grid-row: 1 / 2;
+    }
+
+    .image {
+        width: 40%;
+        transition: transform 0.9s ease-in-out;
+        transition-delay: 0.4s;
+    }
+
+    .panel .content {
+        padding: 0.2rem 1rem;
+        transition: transform 0.6s ease-in-out;
+        transition-delay: 0.4s;
+    }
+
+    .panel h3 {
+        font-size: 1.5rem;
+    }
+
+    .panel p {
+        font-size: 1rem;
+        padding: 1rem 0;
+    }
+
+    .limpar {
+        color: blue;
+        background: none;
+        border-radius: 25px;
+        margin-top: 5px;
+        margin-bottom: 30px;
+        width: 150px;
+        /* Defina uma largura para o botão */
+        display: block;
+    }
+
+    .limpar:hover {
+        color: #fe7504;
+        transition: 0.5s ease-in-out;
+    }
+
+    .btn.transparent {
+        width: 110px;
+        height: 35px;
+        font-size: 0.7rem;
+    }
+
+    .container:before {
+        width: 1000px;
+        height: 1000px;
+        transform: translateX(-50%);
+        left: 30%;
+        bottom: 70%;
+        right: initial;
+        top: initial;
+        transition: 2s ease-in-out;
+    }
+
+    .container.sign-up-mode:before {
+        transform: translate(-50%, 101%);
+        bottom: 20%;
+        right: initial;
+    }
+
+    .container.sign-up-mode .left-panel .image,
+    .container.sign-up-mode .left-panel .content {
+        transform: translateY(-300px);
+    }
+
+    .container.sign-up-mode .right-panel .image,
+    .container.sign-up-mode .right-panel .content {
+        transform: translateY(0px);
+    }
+
+    .right-panel .image,
+    .right-panel .content {
+        transform: translateY(300px);
+    }
+
+    .container.sign-up-mode .signin-signup {
+        top: 5%;
+        transform: translate(-50%, 0);
+    }
+}
+
+@media (max-width: 570px) {
+    .limpar {
+        color: blue;
+        background: none;
+        border-radius: 25px;
+        margin: auto;
+        margin-top: 5px;
+        margin-bottom: 30px;
+        width: 200px;
+        /* Defina uma largura para o botão */
+        display: block;
+    }
+
+    .limpar:hover {
+        color: #fe7504;
+        transition: 0.5s ease-in-out;
+    }
+
+    form.sign-up-form {
+        grid-template-columns: 1fr;
+        /* Alterado para uma única coluna */
+        gap: 10px;
+        /* Ajuste o espaçamento entre os elementos */
+        overflow-y: auto;
+        /* Adicionado para adicionar scroll vertical */
+    }
+
+    .input-field {
+        max-width: 380px;
+        width: 100%;
+        background-color: #f0f0f0;
+        margin: 5px 0px;
+        height: 40px;
+        margin-bottom: 20px;
+        border-radius: 25px;
+        display: flex;
+        grid-template-columns: 10% 85%;
+        padding: 0 0.4rem;
+        align-items: center;
+        position: relative;
+    }
+
+    .panel .content {
+        padding: 0.2rem 1rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .container:before {
+        bottom: 72%;
+        left: 50%;
+    }
+
+    .container.sign-up-mode:before {
+        bottom: 15%;
+        left: 50%;
+    }
+}

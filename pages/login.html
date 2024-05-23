@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/logincadastrostyle.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>LOGIN E CADASTRO</title>
+</head>
+
+<body>
+    <section class="loginEcadastro">
+        <div class="container">
+            <span class="close">&times;</span>
+
+            <div class="forms-container">
+                <div class="signin-signup">
+                    <form action="#" class="sign-in-form">
+                        <h2 class="title">LOGIN</h2>
+                        <div class="input-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Login" id="login" />
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Senha" id="senha" />
+                        </div>
+                        <a href="../pages/soft/redefine.php" class="redsenha">Esqueceu a senha?</a>
+                        <input type="submit" value="Login" class="btn solid" id="entrar" />
+                    </form>
+                    <form id="formulario" action="#" class="sign-up-form">
+                        <h2 class="title">Cadastre-se</h2>
+                        <div class="input-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Nome" id="name" name="name" required
+                                onblur="validarNome('name')">
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-face-smile"></i>
+                            <input type="text" placeholder="Nome Materno" id="motherName" name="motherName" required
+                                onblur="validarmotherNome('motherName')">
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-calendar"></i>
+                            <input type="date" placeholder="Data de Nascimento" id="dob" name="dob" required
+                                onblur="validarIdade('dob')">
+                            <span class="error-message"></span><!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="text" id="cpf" placeholder="CPF" name="cpf" required
+                                onblur="validarCPF('cpf')">
+                            <span class="error-message"></span><!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-at"></i>
+                            <input type="email" id="email" placeholder="Email" name="email" required
+                                onblur="validarEmail('email')">
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-phone"></i>
+                            <input type="tel" id="telefone" placeholder="Telefone" required
+                                onblur="ValidarTelefone('telefone')" name="telefone">
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-map-pin"></i>
+                            <input type="text" class="cep-control" placeholder="CEP" v-model="endereco.cep" id="cep"
+                                name="cep" @change="alterouCep" required onblur="validarCEP('cep')">
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-road"></i>
+                            <input type="text" placeholder="Rua" id="rua" v-model="endereco.rua" class="cep-control"
+                                name="rua" required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="text" placeholder="N°" v-model="endereco.numero" class="cep-control"
+                                id="number" name="number" required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-tree"></i>
+                            <input type="text" placeholder="Bairro" v-model="endereco.bairro" class="cep-control"
+                                id="bairro" name="bairro" required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-city"></i>
+                            <input type="text" placeholder="Cidade" v-model="endereco.cidade" class="cep-control"
+                                id="cidade" name="cidade" required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field">
+                            <i class="fas fa-solid fa-map"></i>
+                            <input type="text" placeholder="Estado" v-model="endereco.estado" class="cep-control"
+                                id="estado" name="estado" required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field login-field">
+                            <i class="fas fa-user"></i>
+                            <input type="text" placeholder="Login" id="signupUsername" name="signupUsername" required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field password-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Senha" id="signupPassword" name="signupPassword"
+                                required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <div class="input-field confirm-password-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" placeholder="Confirmar Senha" id="ConfsignupPassword"
+                                name="ConfsignupPassword" required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                        <input type="submit" class="btn" value="Enviar" />
+                        <input type="reset" class="limpar" value="Limpar Informações">
+                    </form>
+                </div>
+            </div>
+
+            <div class="panels-container">
+                <div class="panel left-panel">
+                    <div class="content">
+                        <h3>Novo aqui?</h3>
+                        <p>
+                            Faça seu cadastro!
+                        </p>
+                        <button class="btn transparent" id="sign-up-btn">
+                            Cadastro
+                        </button>
+                    </div>
+                    <img src="../images/programando.svg" class="image" alt="" />
+                </div>
+                <div class="panel right-panel">
+                    <div class="content">
+                        <h3>Já possui o cadastro?</h3>
+                        <button class="btn transparent" id="sign-in-btn">
+                            LOGIN
+                        </button>
+                    </div>
+                    <img src="../images/skill.svg" class="image" alt="" />
+                </div>
+            </div>
+        </div>
+        <script src="../js/logincadastroapp.js"></script>
+    </section>
+</body>
+
+</html>
