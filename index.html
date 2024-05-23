@@ -22,9 +22,8 @@
             <a href="#" class="">Eventos</a>
             <a href="#" class="">Preços</a>
             <a href="#" class="">Skills</a>
-            <a href="#" id="loginBtn">Login</a>
         </nav>
-        <div id="loginz" >
+        <div id="login" >
 
             <!-- Link de Login visível quando não logado  -->
             <a href="" id="loginLink" >Login
@@ -41,113 +40,6 @@
                 <a href="#">Desconectar</a>
             </div>
         </div>
-        
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="login-image">
-                <img src="./images/logo.png" alt="Imagem de login">
-            </div>
-            <h2>Login</h2>
-            <form id="loginForm">
-                <label for="username">Usuário:</label>
-                <input type="text" id="login" name="login">
-                <span class="error-message"></span>
-                <label for="password">Senha:</label>
-                <input type="password" id="senha" name="senha">
-                <span class="error-message"></span>
-                <button class="button" id="entrar" type="submit">Entrar</button><br>
-                <a href="#" id="signupLink">Ainda não tem cadastro? Cadastre-se</a>
-            </form>
-        </div>
-    </div>
- 
-    <div id="signupModal" class="modal signup-modal" style ="visibility: true;" >
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="signup-form">
-                <h2>Cadastro</h2>
-                <form id="signupForm">
-                    <div class="form-row">
-                        <label for="name">Nome:</label>
-                        <input type="text" id="name" name="name" required onblur="validarNome('name')">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="motherName">Nome Materno:</label>
-                        <input type="text" id="motherName" name="motherName" required onblur="validarNome('motherName')">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required onblur="validarEmail('email')">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="dob">Data de Nascimento:</label>
-                        <input type="date" id="dob" name="dob" required onblur="validarIdade('dob')">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="cpf">CPF:</label>
-                        <input type="text" id="cpf" name="cpf" required onblur="validarCPF('cpf')">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="cep">CEP:</label>
-                        <input type="text" id="cep" name="cep" required onblur="validarCEP('cep')">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="address">Endereço:</label>
-                        <input type="text" id="endereco" name="endereco" required>
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="number">Número:</label>
-                        <input type="text" id="number" name="number" required>
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="city">Cidade:</label>
-                        <input type="text" id="cidade" name="cidade" required>
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="state">Estado:</label>
-                        <input type="text" id="estado" name="estado" required>
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="cellphone">Celular:</label>
-                        <input type="text" id="celular" name="celular" required>
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="phone">Telefone:</label>
-                        <input type="text" id="telefone" name="telefone">
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="signupUsername">Login:</label>
-                        <input type="text" id="signupUsername" name="signupUsername" required>
-                        <span class="error-message"></span>
-                    </div>
-                    <div class="form-row">
-                        <label for="signupPassword">Senha:</label>
-                        <input type="password" id="signupPassword" name="signupPassword" required>
-                        <span class="error-message"></span>
-                    </div>
-                </form>
-                <div class="form-row button-row">
-                    <button class="button" id="cadastrar" type="submit">Cadastrar</button><br>
-                    <!--<a href="#" id="signupLink1">Já tem cadastro? Logar-se</a> -->
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="overlay" class="overlay"></div>
-
     </header>
 
     <main class="main">
@@ -280,11 +172,10 @@
     <footer class="footer">
         Contato | <a href="#">Facebook</a> | <a href="#">Twitter</a>
     </footer  >
-    <script src="./js/modal.js"></script>
-    <script src="./js/validacao.js"></script>
-    <script src="./js/script.js"></script>
-    <!--<script src="./js/header.js"></script>-->
 
+
+    <script src="./js/script.js"></script>
+    <script src="./js/header.js"></script>
 </body>
 
 </html>
