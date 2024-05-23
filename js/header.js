@@ -1,6 +1,6 @@
 // Código para inicialização do cabeçalho
 document.addEventListener("DOMContentLoaded", function () {
-    var loggedIn = true; // Simula o estado de não logado
+    var loggedIn = false; // Simula o estado de não logado
     var loginLink = document.getElementById('loginLink');
     var userMenu = document.getElementById('userMenu');
     var userButton = document.getElementById('userButton');
