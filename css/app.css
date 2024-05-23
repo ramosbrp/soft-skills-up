@@ -3,16 +3,10 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
+    color: black;
 }
 
-.header {
-    background-color: #333;
-    padding: 10px;
-    color: white;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+
 
 nav a {
     margin: 0 15px;
@@ -27,6 +21,12 @@ nav a {
 
 .score {
     font-size: 18px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
 }
 
 .app-escolhas p {
@@ -48,7 +48,7 @@ nav a {
 #enviar-resposta {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #5B84B1FF;
+    background-color: var(--laranja);
     color: white;
     border: none;
     border-radius: 5px;

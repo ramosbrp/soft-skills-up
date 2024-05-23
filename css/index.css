@@ -73,7 +73,6 @@ main {
 }
 
 #comece-agora button {
-    color: #1C1718;
     margin-top: 20px;
     width: 230px;
     height: 62px;
@@ -83,6 +82,11 @@ main {
     background-repeat: no-repeat;
     background-position: right;
     background-size: auto;
+}
+
+#comece-agora button a{
+    color: #1C1718;
+    text-decoration: none;
 }
 
 #section2 {
@@ -346,11 +350,36 @@ main {
     margin-right: -1000px;
 }
 
-footer{
+:root {
+    --branco: #FFFFFF;
+    --cor-footer: #1C1718;
+    --cor-hover: #E0E0E0;
+    --spacing: 15px;
+}
+
+.footer {
     height: 10vh;
-    background-color: #1C1718;
+    background-color: var(--cor-footer);
+    color: var(--branco);
     display: flex;
-    flex-flow: row;
     justify-content: center;
     align-items: center;
+    padding: 0 var(--spacing);
+    border-top: 2px solid #333; /* Adiciona uma linha superior para separar visualmente */
+}
+
+.footer-link {
+    color: var(--branco);
+    text-decoration: none;
+    margin: 0 var(--spacing);
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--cor-hover); /* Muda a cor ao passar o mouse */
+}
+
+.footer span {
+    margin: 0 var(--spacing);
+    color: var(--branco);
 }
