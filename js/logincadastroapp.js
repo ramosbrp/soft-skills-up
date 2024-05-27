@@ -15,14 +15,10 @@ sign_in_btn.addEventListener("click", () => {
 document.addEventListener('DOMContentLoaded', function () {
   const loginModal = document.getElementById('loginModal');
   const signupModal = document.getElementById('signupModal');
-  const openLoginModalBtn = document.getElementById('openLoginModal');
   const openSignupModalBtn = document.getElementById('openSignupModal');
   const closeLoginModalBtn = document.getElementById('closeLoginModal');
   const closeSignupModalBtn = document.getElementById('closeSignupModal');
 
-  openLoginModalBtn.addEventListener('click', function () {
-    loginModal.style.display = 'block';
-  });
 
   openSignupModalBtn.addEventListener('click', function () {
     signupModal.style.display = 'block';
