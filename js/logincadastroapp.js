@@ -1,3 +1,5 @@
+import { updateHeader } from './header.js';
+
 const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
@@ -486,8 +488,11 @@ document.getElementById('entrar').addEventListener('click', function (event) {
 
   // Verifica se o usuário e a senha correspondem aos dados salvos
   if (usuarioSalvo && usuarioSalvo.login === login && usuarioSalvo.senha === senha) {
-    alert('Login bem-sucedido!');
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('username', login);
+    document.dispatchEvent(new CustomEvent('userLoggedIn'));
     window.location.href = '../pages/app.html';
+    alert('Login bem-sucedido!');
   } else {
     alert('Usuário ou senha inválidos.');
   }

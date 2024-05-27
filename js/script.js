@@ -25,3 +25,5 @@ document.querySelector('.right-arrow').addEventListener('click', () => {
 // Initialize the carousel
 updateCarousel();
 
+
+
