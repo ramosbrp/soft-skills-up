@@ -14,6 +14,32 @@
 </head>
 
 <body>
+    <header class="header">
+        <nav>
+            <a href="../index.html" class="">Início</a>
+            <a href="#" class="">Eventos</a>
+            <a href="#" class="">Preços</a>
+            <a href="#" class="">Skills</a>
+        </nav>
+
+        <div id="login1">
+
+            <!-- Link de Login visível quando não logado -->
+            <a href="" id="loginLink">Login
+                <img src="/assets/login.png" alt="">
+            </a>
+        </div>
+
+        <!-- Menu do usuário visível quando logado -->
+        <div id="userMenu" class="user-menu" style="display: none;">
+            <button id="userButton"> <img src="../images/temas-menu.png" alt="Abrir menu"></button>
+            <div id="userDropdown" class="dropdown-content" style="display: none;">
+                <a href="./consulta_usr.html">Consulta de Usuário</a>
+                <a href="./log_user.html">Log de Usuário</a>
+                <a href="#">Desconectar</a>
+            </div>
+        </div>
+    </header>
     <section class="loginEcadastro">
         <div class="container">
             <span class="close">&times;</span>
@@ -86,7 +112,7 @@
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-road"></i>
-                            <input type="text" placeholder="Rua" id="rua" v-model="endereco.rua" class="cep-control"
+                            <input type="text" placeholder="Rua" id="endereco" v-model="endereco.rua" class="cep-control"
                                 name="rua" required>
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
@@ -132,14 +158,14 @@
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
-                        <div class="input-field confirm-password-field">
+                        <!-- <div class="input-field confirm-password-field">
                             <i class="fas fa-lock"></i>
                             <input type="password" placeholder="Confirmar Senha" id="ConfsignupPassword"
                                 name="ConfsignupPassword" required>
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
-                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
-                        </div>
-                        <input type="submit" class="btn" value="Enviar" />
+                            <!-- <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        <!--</div>-->
+                        <input type="submit" class="btn" id='cadastrar' value="Enviar" />
                         <input type="reset" class="limpar" value="Limpar Informações">
                     </form>
                 </div>

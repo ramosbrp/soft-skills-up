@@ -6,6 +6,15 @@
     box-sizing: border-box;
 }
 
+.claro{
+
+}
+
+.black{
+
+    
+}
+
 html {
     /*Criando variáveis*/
     --laranja: #E44320;
@@ -65,13 +74,13 @@ header nav a {
     color: var(-branco);
 }
 
-#login {
+#login1 {
     width: 120px;
     display: flex;
     align-items: center;
 }
 
-#login a {
+#login1 a {
     text-decoration: none;
     color: var(--branco);
 }

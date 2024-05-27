@@ -5,8 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Consulta de Usuários</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
+  <header class="header">
+    <nav>
+        <a href="../index.html" class="">Início</a>
+        <a href="#" class="">Eventos</a>
+        <a href="#" class="">Preços</a>
+        <a href="#" class="">Skills</a>
+    </nav>
+    <div class="score"  >
+        Score: <span id="score" >0</span>
+    </div>
+
+    <div id="login1">
+
+      <!-- Link de Login visível quando não logado -->
+      <a href="" id="loginLink">Login
+          <img src="/assets/login.png" alt="">
+      </a>
+  </div>
+
+  <!-- Menu do usuário visível quando logado -->
+  <div id="userMenu" class="user-menu" style="display: none;">
+      <button id="userButton"> <img src="../images/temas-menu.png" alt="Abrir menu"></button>
+      <div id="userDropdown" class="dropdown-content" style="display: none;">
+          <a href="./consulta_usr.html">Consulta de Usuário</a>
+          <a href="./log_user.html">Log de Usuário</a>
+          <a href="#">Desconectar</a>
+      </div>
+  </div>
+</header>
   <div class="container">
     <h1 class="my-4">Consulta de Usuários</h1>
     
@@ -69,6 +102,8 @@
     window.onload = displayUsers;
   </script>
 
+<script src="./js/script.js"></script>
+<script src="./js/header.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>

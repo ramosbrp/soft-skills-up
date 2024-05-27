@@ -263,10 +263,7 @@ jQuery(document).ready(function ($) {
   var bairroId = '#bairro';
   var cidadeId = '#cidade';
   var estadoId = '#estado';
-  var numeroId = '#number';
-  var enderecoCompletoId = '#endereco-completo';
 
-  /* -----------------  NÃO MEXA ABAIXO -------------*/
 
   function setLoading(loading) {
     var loadingText = 'Carregando...';
@@ -303,7 +300,7 @@ jQuery(document).ready(function ($) {
           spanSuccess.classList.add("success-message");
           elemento.classList.add("is-valid");
 
-          const camposEndereco = ['rua', 'bairro', 'cidade', 'estado',];
+          const camposEndereco = ['endereco', 'bairro', 'cidade', 'estado',];
           camposEndereco.forEach(campo => {
             const elementoEndereco = document.getElementById(campo);
             const spanSuccessEndereco = elementoEndereco.nextElementSibling.nextElementSibling;
@@ -373,7 +370,7 @@ function buscarEndereco(cep) {
       document.getElementById('estado').value = data.uf;
     })
     .catch(error => {
-      console.error('Erro ao buscar endereço:', error);
+      // console.error('Erro ao buscar endereço:', error);
     });
 }
 
@@ -425,7 +422,6 @@ function salvarCadastro() {
   const numero = document.getElementById('number').value;
   const cidade = document.getElementById('cidade').value;
   const estado = document.getElementById('estado').value;
-  const celular = document.getElementById('celular').value;
   const telefone = document.getElementById('telefone').value;
   const login = document.getElementById('signupUsername').value;
   const senha = document.getElementById('signupPassword').value;
@@ -433,15 +429,15 @@ function salvarCadastro() {
   // Cria um objeto com os dados do usuário
   const usuario = {
     nome: nome,
-    nomeMaterno: motherName,
+    nomeMaterno: nomeMaterno,
+    dob: dob,
     email: email,
     cpf: cpf,
     cep: cep,
-    endereco: rua,
+    endereco: endereco,
     numero: numero,
     cidade: cidade,
     estado: estado,
-    celular: celular,
     telefone: telefone,
     login: login,
     senha: senha
@@ -459,7 +455,7 @@ document.getElementById('cadastrar').addEventListener('click', function (event) 
   event.preventDefault(); // Evita que o formulário seja enviado
 
   // Array com os IDs dos campos do formulário
-  const campos = ['name', 'motherName', 'email', 'dob', 'cpf', 'cep', 'endereco', 'number', 'cidade', 'estado', 'celular', 'signupUsername', 'signupPassword'];
+  const campos = ['name', 'motherName', 'email', 'dob', 'cpf', 'cep', 'endereco', 'number', 'cidade', 'estado', 'telefone', 'signupUsername', 'signupPassword'];
   let formValido = true;
 
   // Valida cada campo do formulário
@@ -491,7 +487,7 @@ document.getElementById('entrar').addEventListener('click', function (event) {
   // Verifica se o usuário e a senha correspondem aos dados salvos
   if (usuarioSalvo && usuarioSalvo.login === login && usuarioSalvo.senha === senha) {
     alert('Login bem-sucedido!');
-    // Aqui você pode redirecionar o usuário para a página de perfil, por exemplo
+    window.location.href = '../pages/app.html';
   } else {
     alert('Usuário ou senha inválidos.');
   }
