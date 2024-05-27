@@ -491,7 +491,7 @@ document.getElementById('entrar').addEventListener('click', function (event) {
     localStorage.setItem('isLoggedIn', 'true');
     localStorage.setItem('username', login);
     document.dispatchEvent(new CustomEvent('userLoggedIn'));
-    window.location.href = '../pages/app.html';
+    window.location.href = '../pages/artigo.html';
     alert('Login bem-sucedido!');
   } else {
     alert('Usuário ou senha inválidos.');

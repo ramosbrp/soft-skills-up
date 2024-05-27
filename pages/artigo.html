@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artigo/Vídeo Antes do Quiz</title>
+   
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/artigo.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <nav>
+            <a href="../index.html" class="">Início</a>
+            <a href="#" class="">Eventos</a>
+            <a href="" class="">Preços</a>
+            <a href="#" class="">Skills</a>
+            
+        </nav>
+        <div id="login1">
+
+            <!-- Link de Login visível quando não logado -->
+            <a href="#" id="loginLink">Login
+                <img src="/assets/login.png" alt="">
+            </a>
+        </div>
+
+        <!-- Menu do usuário visível quando logado -->
+        <div id="userMenu" class="user-menu" style="display: none;">
+            <button id="userButton"> <img src="../images/temas-menu.png" alt="Abrir menu"></button>
+            <div id="userDropdown" class="dropdown-content" style="display: none;">
+                <a href="/pages/consulta_usr.html">Consulta de Usuário</a>
+                <a href="/pages/log_user.html">Log de Usuário</a>
+                <a href="/pages/app.html">App</a>
+                <a href="#" id="desconectar" >Desconectar</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="header-artigo">
+            <h1>Preparação para o Quiz</h1>
+        </div>
+        <div class="content">
+            <!-- Escolha entre um artigo ou um vídeo -->
+            <h2>Artigo Inspirador</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel risus nec nulla ultrices gravida.
+                Integer vehicula diam et eros malesuada, id vestibulum purus dignissim. Proin at libero eu nunc interdum
+                feugiat a ac libero. Curabitur dignissim dolor et libero varius, non commodo turpis ultricies.</p>
+            <img src="https://via.placeholder.com/800x400.png?text=Imagem+do+Artigo" alt="Imagem do Artigo">
+
+            <!-- Para o caso de usar um vídeo em vez do artigo -->
+            <!--
+            <h2>Vídeo Educativo</h2>
+            <video controls>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+                Seu navegador não suporta o elemento de vídeo.
+            </video>
+            <p>Assista ao vídeo para se preparar para o quiz.</p>
+            -->
+        </div>
+        <div class="footer">
+            <button onclick="location.href='app.html'">Ir para o Quiz</button>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+    <script type="module" src="../js/header.js"></script>
+</body>
+
+</html>
