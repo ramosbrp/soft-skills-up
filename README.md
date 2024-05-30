@@ -11,6 +11,9 @@ Este projeto é um aplicativo educacional focado no desenvolvimento de habilidad
 
 ![image](https://github.com/ramosbrp/soft-skills-up/assets/61557867/f3d89a45-3c57-4528-829e-c7ca9e92e222)
 
+![image](https://github.com/ramosbrp/soft-skills-up/assets/61557867/f0e84d62-a27b-4bf0-b871-f1cea7ceba7d)
+
+
 
 ### Licença
 Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para mais detalhes.
