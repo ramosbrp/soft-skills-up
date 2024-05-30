@@ -15,22 +15,6 @@ sign_in_btn.addEventListener("click", () => {
 document.addEventListener('DOMContentLoaded', function () {
   const loginModal = document.getElementById('loginModal');
   const signupModal = document.getElementById('signupModal');
-  const openSignupModalBtn = document.getElementById('openSignupModal');
-  const closeLoginModalBtn = document.getElementById('closeLoginModal');
-  const closeSignupModalBtn = document.getElementById('closeSignupModal');
-
-
-  openSignupModalBtn.addEventListener('click', function () {
-    signupModal.style.display = 'block';
-  });
-
-  closeLoginModalBtn.addEventListener('click', function () {
-    loginModal.style.display = 'none';
-  });
-
-  closeSignupModalBtn.addEventListener('click', function () {
-    signupModal.style.display = 'none';
-  });
 
   window.addEventListener('click', function (event) {
     if (event.target == loginModal) {

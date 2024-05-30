@@ -1,17 +1,20 @@
 // Código para inicialização do cabeçalho
 
 
+const desconectar = document.getElementById('desconectar');
+const loginLink = document.getElementById('loginLink');
+const userMenu = document.getElementById('userMenu');
+const userButton = document.getElementById('userButton');
+const userDropdown = document.getElementById('userDropdown');
 
 document.addEventListener('DOMContentLoaded', () => {
 
     const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
-    console.log('Estado de login ao carregar a página:', isLoggedIn);
     updateHeader(isLoggedIn);
 
-    var desconectar = document.getElementById('desconectar');
 
     desconectar.addEventListener('click', () => {
-
+        
         localStorage.removeItem('isLoggedIn');
         localStorage.removeItem('username');
 
@@ -21,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     });
 
-    var loginLink = document.getElementById('loginLink');
 
     loginLink.addEventListener('click', function () {
 
@@ -34,9 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function updateHeader(logged) {
     var loggedIn = logged; // Simula o estado de não logado
-    var loginLink = document.getElementById('loginLink');
-    var userMenu = document.getElementById('userMenu');
-    var userButton = document.getElementById('userButton');
+
 
     // Simula a verificação do estado de login
     if (loggedIn) {
@@ -49,12 +49,12 @@ function updateHeader(logged) {
 
     // Adiciona interatividade ao botão do menu do usuário
     userButton.addEventListener('click', function () {
-        var userDropdown = document.getElementById('userDropdown');
+
         userDropdown.style.display = userDropdown.style.display === 'none' ? 'block' : 'none';
     });
 
     function atualizarInterfaceUsuario() {
-        
+
         const usuarioSalvo = localStorage.getItem('usuario');
 
         if (usuarioSalvo) {
@@ -64,8 +64,8 @@ function updateHeader(logged) {
             loginLink.style.display = 'none'; // Oculta o botão de login
         } else {
             // Se não houver usuário logado, exiba o botão de login na barra de navegação
-            document.getElementById('userButton').innerText = ''; // Limpa o texto do nome do usuário
-            document.getElementById('loginlink').style.display = 'inline'; // Exibe o botão de login
+            userButton.innerText = ''; // Limpa o texto do nome do usuário
+            loginLink.style.display = 'inline'; // Exibe o botão de login
         }
     }
     document.addEventListener('DOMContentLoaded', function () {
