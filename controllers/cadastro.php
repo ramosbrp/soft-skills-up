@@ -20,11 +20,6 @@ $senha = $dbPassword;
 
 // print_r($_ENV); // Lista todas as variáveis de ambiente para testar apenas
 
-echo "
-    <script>
-                console.log('Host: " . $dbHost . "\\nDatabase: " . $dbDatabase . "\\nUsername: " . $dbUser . "\\nPassword: " . $dbPassword . "');
-              </script>
-";
 
 $conn = new mysqli($hostname, $usuario, $senha, $bancoDeDados);
 if ($conn->connect_errno) {

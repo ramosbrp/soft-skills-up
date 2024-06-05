@@ -46,15 +46,15 @@
 
             <div class="forms-container">
                 <div class="signin-signup">
-                    <form action="#" class="sign-in-form">
+                    <form action="../controllers/login.php" class="sign-in-form" method="post">
                         <h2 class="title">LOGIN</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Login" id="login" />
+                            <input type="text" placeholder="Login" id="login" name="login" />
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Senha" id="senha" />
+                            <input type="password" placeholder="Senha" id="senha"  name="senha"/>
                         </div>
                         <a href="../pages/soft/recsenha.php" class="redsenha">Esqueceu a senha?</a>
                         <input type="submit" value="Login" class="btn solid" id="entrar" />
