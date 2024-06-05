@@ -1,12 +1,32 @@
 <?php
 
-// Conecte-se ao banco de dados
-$hostname = "localhost";
-$bancodedados = "projeto";
-$usuario = "root";
-$senha = "softskills@123";
+require_once '../vendor/autoload.php';
 
-$conn = new mysqli($hostname, $usuario, $senha, $bancodedados);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
+// Agora você pode acessar as variáveis como variáveis de ambiente
+$dbHost = $_ENV['DB_HOST'];
+$dbDatabase = $_ENV['DB_DATABASE'];
+$dbUser = $_ENV['DB_USERNAME'];
+$dbPassword = $_ENV['DB_PASSWORD'];
+
+
+// Conecte-se ao banco de dados
+$hostname = $dbHost;
+$bancoDeDados = $dbDatabase;
+$usuario = $dbUser;
+$senha = $dbPassword;
+
+// print_r($_ENV); // Lista todas as variáveis de ambiente para testar apenas
+
+echo "
+    <script>
+                console.log('Host: " . $dbHost . "\\nDatabase: " . $dbDatabase . "\\nUsername: " . $dbUser . "\\nPassword: " . $dbPassword . "');
+              </script>
+";
+
+$conn = new mysqli($hostname, $usuario, $senha, $bancoDeDados);
 if ($conn->connect_errno) {
     echo "Falha ao conectar:(" . $conn->connect_errno . ")" . $conn->connect_errno;
 } else
@@ -28,9 +48,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cidade = $_POST['cidade'];
     $estado = $_POST['estado'];
     $signupUsername = $_POST['signupUsername'];
-    $signupPassword = password_hash($_POST['signupPassword'], PASSWORD_BCRYPT) ;
+    $signupPassword = password_hash($_POST['signupPassword'], PASSWORD_BCRYPT);
     $cod_rec = '';
-    
+
 
     // Consulta SQL para inserir o novo usuário
     $query = "INSERT INTO usuario (nome, nome_mae, data_nascimento, cpf, email, telefone, cep, rua, numero, complemento, bairro, cidade, estado, login, senha, cod_rec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
