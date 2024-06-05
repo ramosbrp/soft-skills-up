@@ -1,17 +1,25 @@
-import { updateHeader } from './header.js';
+// import { updateHeader } from './header.js';
 
+// Variáveis
 const sign_in_btn = document.querySelector("#sign-in-btn");
 const sign_up_btn = document.querySelector("#sign-up-btn");
 const container = document.querySelector(".container");
+const dataNascimento = document.getElementById('dataNascimento');
+const nome = document.getElementById('nome');
+const nomeMae = document.getElementById('nomeMae');
+const campoTelefone = document.getElementById('telefone');
+const campoCPF = document.getElementById('cpf');
+const cep = document.getElementById('cep');
+const rua = document.getElementById('rua');
+const bairro = document.getElementById('bairro');
+const cidade = document.getElementById('cidade');
+const estado = document.getElementById('estado');
+const email = document.getElementById('email');
+const telefone = document.getElementById('telefone');
+const viaCepAPI = 'https://viacep.com.br/ws';
 
-sign_up_btn.addEventListener("click", () => {
-  container.classList.add("sign-up-mode");
-});
 
-sign_in_btn.addEventListener("click", () => {
-  container.classList.remove("sign-up-mode");
-});
-
+// Event Listeners
 document.addEventListener('DOMContentLoaded', function () {
   const loginModal = document.getElementById('loginModal');
   const signupModal = document.getElementById('signupModal');
@@ -25,6 +33,51 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 });
+
+sign_up_btn.addEventListener("click", () => {
+  container.classList.add("sign-up-mode");
+});
+
+sign_in_btn.addEventListener("click", () => {
+  container.classList.remove("sign-up-mode");
+});
+
+nome.addEventListener('blur', () => {
+  validarNome('nome');
+});
+
+nomeMae.addEventListener('blur', () => {
+  validarNomeMae('nomeMae');
+});
+
+dataNascimento.addEventListener('blur', () => {
+  validarIdade('');
+});
+
+// Event listener para preencher os campos de endereço ao perder o foco do campo CEP
+cep.addEventListener('blur', function () {
+  const cep = this.value.replace(/\D/g, '');
+  if (cep.length === 8) {
+    buscarEndereco(cep);
+  }
+});
+
+campoCPF.addEventListener('blur', () => {
+  // mascaraCPF('cpf');
+  validarCPF('cpf');
+});
+
+email.addEventListener('blur', () => {
+  validarEmail('email');
+});
+
+telefone.addEventListener('blut', () => {
+  validarTelefone('telefone');
+});
+
+
+
+// Funcções
 // Função genérica para validar texto
 function validarTexto(idCampo, mensagemErro, minCaracteres, maxCaracteres, regex) {
   const elemento = document.getElementById(idCampo);
@@ -76,7 +129,7 @@ function validarNome(idCampo) {
 }
 
 // Função para validar nome materno
-function validarmotherNome(idCampo) {
+function validarNomeMae(idCampo) {
   const mensagemErro = 'O nome não pode possuir números ou caracteres especiais';
   const regex = /^[A-Za-zÀ-ÿ\s]+$/;
   return validarTexto(idCampo, mensagemErro, 5, 80, regex);
@@ -144,11 +197,12 @@ function formatarNumeroTelefone(numero) {
   }
 }
 
-// Aplicar máscara ao campo de telefone e adicionar evento de validação
-const campoTelefone = document.getElementById('telefone');
-if (campoTelefone) {
-  campoTelefone.addEventListener('input', function () {
-    validarTelefone('telefone');
+// Função para mascarar CEP
+function mascaraCEP(campo) {
+  campo.maxLength = 9;
+  campo.addEventListener('input', function (event) {
+    event.target.value = event.target.value.replace(/\D/g, '')
+      .replace(/(\d{5})(\d)/, '$1-$2');
   });
 }
 
@@ -186,6 +240,17 @@ function validarIdade(idCampo) {
   return true;
 }
 
+// Função para mascarar CPF
+function mascaraCPF(campo) {
+  campo.maxLength = 14;
+  campo.addEventListener('input', function (event) {
+    event.target.value = event.target.value.replace(/\D/g, '')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d)/, '$1.$2')
+      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+  });
+}
+
 // Função para calcular idade
 function calcularIdade(dataNascimento) {
   const hoje = new Date();
@@ -199,24 +264,6 @@ function calcularIdade(dataNascimento) {
 
   return idade;
 }
-
-// Função para aplicar máscara ao campo CPF
-const campoCPF = document.getElementById('cpf');
-if (campoCPF) {
-  mascaraCPF(campoCPF);
-}
-
-// Função para mascarar CPF
-function mascaraCPF(campo) {
-  campo.maxLength = 14;
-  campo.addEventListener('input', function (event) {
-    event.target.value = event.target.value.replace(/\D/g, '')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d)/, '$1.$2')
-      .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-  });
-}
-mascaraCPF(document.getElementById('cpf'));
 
 // Função para validar CEP com o preenchimento automático
 function validarCEP(idCampo) {
@@ -237,134 +284,34 @@ function validarCEP(idCampo) {
   }
 }
 
-jQuery(document).ready(function ($) {
-
-  /*SETUP DE CAMPOS DO FORMULÁRIO - Altere com seus seletores abaixo! */
-  var cepId = '#cep';
-  var enderecoId = '#rua';
-  var bairroId = '#bairro';
-  var cidadeId = '#cidade';
-  var estadoId = '#estado';
-
-
-  function setLoading(loading) {
-    var loadingText = 'Carregando...';
-    if (loading) {
-      $(enderecoId).val(loadingText);
-      $(bairroId).val(loadingText);
-      $(cidadeId).val(loadingText);
-      $(estadoId).val(loadingText);
-    } else {
-      $(enderecoId).val('');
-      $(bairroId).val('');
-      $(cidadeId).val('');
-      $(estadoId).val('');
-    }
-  }
-
-  function preencherEndereco() {
-    var cep = $(cepId).val().replace(/\D/g, '');
-    console.log("CEP digitado: ", cep); // Debug
-    if (cep !== "") {
-      setLoading(true);
-      $.getJSON("https://viacep.com.br/ws/" + cep + "/json/?callback=?", function (dados) {
-        setLoading(false);
-        console.log("Dados recebidos: ", dados); // Debug
-        if (!("erro" in dados)) {
-          $('#rua').val(dados.logradouro);
-          $('#bairro').val(dados.bairro);
-          $('#cidade').val(dados.localidade);
-          $('#estado').val(dados.uf);
-          // Adiciona a mensagem de "Válido" ao campo CEP
-          const elemento = document.getElementById('cep');
-          const spanSuccess = elemento.nextElementSibling.nextElementSibling;
-          spanSuccess.textContent = 'Válido';
-          spanSuccess.classList.add("success-message");
-          elemento.classList.add("is-valid");
-
-          const camposEndereco = ['endereco', 'bairro', 'cidade', 'estado',];
-          camposEndereco.forEach(campo => {
-            const elementoEndereco = document.getElementById(campo);
-            const spanSuccessEndereco = elementoEndereco.nextElementSibling.nextElementSibling;
-            spanSuccessEndereco.textContent = 'Válido';
-            spanSuccessEndereco.classList.add("success-message");
-            elementoEndereco.classList.add("is-valid");
-          });
-
-        } else {
-          const elemento = document.getElementById('cep');
-          const span = elemento.nextElementSibling;
-          span.textContent = 'CEP não encontrado'; // Define a mensagem de erro no span
-          elemento.classList.add('is-invalid');
-        }
-      }).fail(function () {
-        setLoading(false);
-        alert("Erro ao buscar o CEP.");
-      });
-    } else {
-      const elemento = document.getElementById('cep');
-      const span = elemento.nextElementSibling;
-      span.textContent = 'CEP inválido'; // Define a mensagem de erro no span
-      elemento.classList.add('is-invalid');
-    }
-  }
-  $('#number').on('input', function () {
-    const numero = $(this).val().trim();
-    if (numero !== '') {
-      const elementoNumero = document.getElementById('number');
-      const spanSuccessNumero = elementoNumero.nextElementSibling.nextElementSibling;
-      spanSuccessNumero.textContent = 'Válido';
-      spanSuccessNumero.classList.add("success-message");
-      elementoNumero.classList.add("is-valid");
-    }
-  });
-
-
-  $(cepId).on('blur', preencherEndereco);
-
-  $('#number').on('input', function () {
-    var enderecoCompleto = $('#rua').val() + ', ' +
-      $('#number').val() + ', ' +
-      $('#cidade').val() + ', ' +
-      $('#estado').val();
-    $('#endereco-completo').val(enderecoCompleto);
-  });
-});
-
-// Função para mascarar CEP
-function mascaraCEP(campo) {
-  campo.maxLength = 9;
-  campo.addEventListener('input', function (event) {
-    event.target.value = event.target.value.replace(/\D/g, '')
-      .replace(/(\d{5})(\d)/, '$1-$2');
-  });
+// Função para aplicar máscara ao campo CPF
+if (campoCPF) {
+  mascaraCPF(campoCPF);
 }
-
-mascaraCEP(document.getElementById('cep'));
 
 // Função para buscar endereço pelo CEP
-function buscarEndereco(cep) {
-  fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById('endereco').value = data.logradouro;
-      document.getElementById('cidade').value = data.localidade;
-      document.getElementById('estado').value = data.uf;
-    })
-    .catch(error => {
-      // console.error('Erro ao buscar endereço:', error);
-    });
-}
+async function buscarEndereco(cep) {
 
-// Event listener para preencher os campos de endereço ao perder o foco do campo CEP
-document.getElementById('cep').addEventListener('blur', function () {
-  const cep = this.value.replace(/\D/g, '');
-  if (cep.length === 8) {
-    buscarEndereco(cep);
+  try {
+    const response = await fetch(`${viaCepAPI}/${cep}/json/`);
+    if (!response.ok)
+      throw new Error("Não foi possível obter dados");
+
+    const data = await response.json();
+    if (data.erro) {
+      alert("CEP não encontrado");
+      return
+    }
+    rua.value = data.logradouro;
+    cidade.value = data.localidade;
+    estado.value = data.uf;
+    bairro.value = data.bairro;
+
+  } catch (error) {
+    alert(error.message);
   }
-});
 
-
+}
 
 // Função para validar campo preenchido
 function validarCampoPreenchido(idCampo) {
@@ -392,88 +339,18 @@ function validarCampoPreenchido(idCampo) {
   return true;
 }
 
-function salvarCadastro() {
-  // Obtém os valores dos campos do formulário
-  const nome = document.getElementById('name').value;
-  const nomeMaterno = document.getElementById('motherName').value;
-  const email = document.getElementById('email').value;
-  const dob = document.getElementById('dob').value;
-  const cpf = document.getElementById('cpf').value;
-  const cep = document.getElementById('cep').value;
-  const endereco = document.getElementById('endereco').value;
-  const numero = document.getElementById('number').value;
-  const cidade = document.getElementById('cidade').value;
-  const estado = document.getElementById('estado').value;
-  const telefone = document.getElementById('telefone').value;
-  const login = document.getElementById('signupUsername').value;
-  const senha = document.getElementById('signupPassword').value;
 
-  // Cria um objeto com os dados do usuário
-  const usuario = {
-    nome: nome,
-    nomeMaterno: nomeMaterno,
-    dob: dob,
-    email: email,
-    cpf: cpf,
-    cep: cep,
-    endereco: endereco,
-    numero: numero,
-    cidade: cidade,
-    estado: estado,
-    telefone: telefone,
-    login: login,
-    senha: senha
-  };
-
-  // Converte o objeto para JSON e salva no localStorage
-  localStorage.setItem('usuario', JSON.stringify(usuario));
-
-  // Exibe uma mensagem de sucesso
-  alert('Cadastro realizado com sucesso!');
+// Aplicar máscara ao campo de telefone e adicionar evento de validação
+if (campoTelefone) {
+  campoTelefone.addEventListener('input', function () {
+    validarTelefone('telefone');
+  });
 }
 
-// Event listener para validação dos campos ao submeter o formulário
-document.getElementById('cadastrar').addEventListener('click', function (event) {
-  event.preventDefault(); // Evita que o formulário seja enviado
 
-  // Array com os IDs dos campos do formulário
-  const campos = ['name', 'motherName', 'email', 'dob', 'cpf', 'cep', 'endereco', 'number', 'cidade', 'estado', 'telefone', 'signupUsername', 'signupPassword'];
-  let formValido = true;
 
-  // Valida cada campo do formulário
-  campos.forEach(campo => {
-    const valido = validarCampoPreenchido(campo);
-    if (!valido) formValido = false;
-  });
 
-  // Verifica se todos os campos são válidos
-  if (formValido) {
-    // Se todos os campos forem válidos, salva os dados no localStorage
-    salvarCadastro();
-  } else {
-    // Se algum campo for inválido, exibe uma mensagem de erro
-    alert('Por favor, preencha todos os campos corretamente.');
-  }
-});
 
-document.getElementById('entrar').addEventListener('click', function (event) {
-  event.preventDefault(); // Evita que o formulário seja enviado
 
-  // Obtém os valores dos campos do formulário
-  const login = document.getElementById('login').value;
-  const senha = document.getElementById('senha').value;
 
-  // Recupera os dados do usuário armazenados no localStorage
-  const usuarioSalvo = JSON.parse(localStorage.getItem('usuario'));
 
-  // Verifica se o usuário e a senha correspondem aos dados salvos
-  if (usuarioSalvo && usuarioSalvo.login === login && usuarioSalvo.senha === senha) {
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('username', login);
-    document.dispatchEvent(new CustomEvent('userLoggedIn'));
-    window.location.href = '../pages/artigo.html';
-    alert('Login bem-sucedido!');
-  } else {
-    alert('Usuário ou senha inválidos.');
-  }
-});

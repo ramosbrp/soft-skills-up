@@ -59,89 +59,92 @@
                         <a href="../pages/soft/recsenha.php" class="redsenha">Esqueceu a senha?</a>
                         <input type="submit" value="Login" class="btn solid" id="entrar" />
                     </form>
-                    <form id="formulario" action="#" class="sign-up-form">
+                    <form id="formulario" action="../controllers/cadastro.php" method="post" class="sign-up-form">
                         <h2 class="title">Cadastre-se</h2>
                         <div class="input-field">
                             <i class="fas fa-user"></i>
-                            <input type="text" placeholder="Nome" id="name" name="name" required
-                                onblur="validarNome('name')">
+                            <input type="text" placeholder="Nome" id="nome" name="nome" required
+                                >
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-face-smile"></i>
-                            <input type="text" placeholder="Nome Materno" id="motherName" name="motherName" required
-                                onblur="validarmotherNome('motherName')">
+                            <input type="text" placeholder="Nome Materno" id="nomeMae" name="nomeMae" required
+                                >
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-calendar"></i>
-                            <input type="date" placeholder="Data de Nascimento" id="dob" name="dob" required
-                                onblur="validarIdade('dob')">
+                            <input type="date" placeholder="Data de Nascimento" id="dataNascimento" name="dataNascimento" required
+                                >
                             <span class="error-message"></span><!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
                             <input type="text" id="cpf" placeholder="CPF" name="cpf" required
-                                onblur="validarCPF('cpf')">
+                                >
                             <span class="error-message"></span><!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-at"></i>
                             <input type="email" id="email" placeholder="Email" name="email" required
-                                onblur="validarEmail('email')">
+                                >
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-phone"></i>
                             <input type="tel" id="telefone" placeholder="Telefone" required
-                                onblur="ValidarTelefone('telefone')" name="telefone">
+                                 name="telefone">
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-map-pin"></i>
                             <input type="text" class="cep-control" placeholder="CEP" v-model="endereco.cep" id="cep"
-                                name="cep" @change="alterouCep" required onblur="validarCEP('cep')">
+                                name="cep" @change="alterouCep" required >
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-road"></i>
-                            <input type="text" placeholder="Rua" id="endereco" v-model="endereco.rua" class="cep-control"
-                                name="rua" required>
+                            <input type="text" placeholder="Rua" id="rua" v-model="endereco.rua" class="cep-control" name="rua" required>
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-lock"></i>
                             <input type="text" placeholder="N°" v-model="endereco.numero" class="cep-control"
-                                id="number" name="number" required>
+                                id="numero" name="numero" required>
+                            <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
+                            <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
+                        </div>
+                         <div class="input-field">
+                            <i class="fas fa-lock"></i>
+                            <input type="text" placeholder="Complemento" v-model="endereco.complemento" class="cep-control"
+                                id="complemento" name="complemento" required>
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-tree"></i>
-                            <input type="text" placeholder="Bairro" v-model="endereco.bairro" class="cep-control"
-                                id="bairro" name="bairro" required>
+                            <input type="text" placeholder="Bairro" v-model="endereco.bairro" class="cep-control" id="bairro" name="bairro" required>
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-city"></i>
-                            <input type="text" placeholder="Cidade" v-model="endereco.cidade" class="cep-control"
-                                id="cidade" name="cidade" required>
+                            <input type="text" placeholder="Cidade" v-model="endereco.cidade" class="cep-control" id="cidade" name="cidade" required>
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
                         <div class="input-field">
                             <i class="fas fa-solid fa-map"></i>
-                            <input type="text" placeholder="Estado" v-model="endereco.estado" class="cep-control"
-                                id="estado" name="estado" required>
+                            <input type="text" placeholder="Estado" v-model="endereco.estado" class="cep-control" id="estado" name="estado" required>
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
