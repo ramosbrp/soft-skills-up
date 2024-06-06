@@ -119,3 +119,30 @@ header nav a {
 .dropdown-content a:hover {
     background-color: var(--branco3);
 }
+
+.footer {
+    height: 10vh;
+    background-color: var(--preto);
+    color: var(--branco);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 var(--spacing);
+    border-top: 2px solid #333; /* Adiciona uma linha superior para separar visualmente */
+}
+
+.footer-link {
+    color: var(--branco);
+    text-decoration: none;
+    margin: 0 var(--spacing);
+    transition: color 0.3s ease;
+}
+
+.footer-link:hover {
+    color: var(--cor-hover); /* Muda a cor ao passar o mouse */
+}
+
+.footer span {
+    margin: 0 var(--spacing);
+    color: var(--branco);
+}

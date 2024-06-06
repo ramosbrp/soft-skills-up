@@ -350,36 +350,5 @@ main {
     margin-right: -1000px;
 }
 
-:root {
-    --branco: #FFFFFF;
-    --cor-footer: #1C1718;
-    --cor-hover: #E0E0E0;
-    --spacing: 15px;
-}
 
-.footer {
-    height: 10vh;
-    background-color: var(--cor-footer);
-    color: var(--branco);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 var(--spacing);
-    border-top: 2px solid #333; /* Adiciona uma linha superior para separar visualmente */
-}
 
-.footer-link {
-    color: var(--branco);
-    text-decoration: none;
-    margin: 0 var(--spacing);
-    transition: color 0.3s ease;
-}
-
-.footer-link:hover {
-    color: var(--cor-hover); /* Muda a cor ao passar o mouse */
-}
-
-.footer span {
-    margin: 0 var(--spacing);
-    color: var(--branco);
-}
