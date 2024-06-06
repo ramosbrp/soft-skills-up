@@ -12,21 +12,14 @@ $dbUser = $_ENV['DB_USERNAME'];
 $dbPassword = $_ENV['DB_PASSWORD'];
 
 
-// Conecte-se ao banco de dados
-$hostname = $dbHost;
-$bancoDeDados = $dbDatabase;
-$usuario = $dbUser;
-$senha = $dbPassword;
-
-// print_r($_ENV); // Lista todas as variáveis de ambiente para testar apenas
-
-
-$conn = new mysqli($hostname, $usuario, $senha, $bancoDeDados);
-if ($conn->connect_errno) {
-    echo "Falha ao conectar:(" . $conn->connect_errno . ")" . $conn->connect_errno;
-} else
-    echo "Conectado ao Banco de Dados";
-
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:$dbHost; Database = $dbDatabase", "$dbUser", "{$dbPassword}");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    print ("Error connecting to SQL Server.");
+    die(print_r($e));
+}
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_POST['nome'];
@@ -48,9 +41,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     // Consulta SQL para inserir o novo usuário
-    $query = "INSERT INTO usuario (nome, nome_mae, data_nascimento, cpf, email, telefone, cep, rua, numero, complemento, bairro, cidade, estado, login, senha, cod_rec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("sssssssssssssssi", $name, $nomeMae, $data_nascimento, $cpf, $email, $telefone, $cep, $rua, $numero, $complemento, $bairro, $cidade, $estado, $signupUsername, $signupPassword, $cod_rec);
+    $stmt = $conn->prepare("INSERT INTO usuario (nome, nome_mae, data_nascimento, cpf, email, telefone, cep, rua, numero, complemento, bairro, cidade, estado, login, senha, cod_rec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    $stmt->bindParam(1, $name);
+    $stmt->bindParam(2, $nomeMae);
+    $stmt->bindParam(3, $data_nascimento);
+    $stmt->bindParam(4, $cpf);
+    $stmt->bindParam(5, $email);
+    $stmt->bindParam(6, $telefone);
+    $stmt->bindParam(7, $cep);
+    $stmt->bindParam(8, $rua);
+    $stmt->bindParam(9, $numero);
+    $stmt->bindParam(10, $complemento);
+    $stmt->bindParam(11, $bairro);
+    $stmt->bindParam(12, $cidade);
+    $stmt->bindParam(13, $estado);
+    $stmt->bindParam(14, $signupUsername);
+    $stmt->bindParam(15, $signupPassword);
+    $stmt->bindParam(16, $cod_rec);
 
     if ($stmt->execute()) {
         echo "<script>
