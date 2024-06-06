@@ -6,16 +6,8 @@
     box-sizing: border-box;
 }
 
-.claro{
 
-}
-
-.black{
-
-    
-}
-
-html {
+:root {
     /*Criando variáveis*/
     --laranja: #E44320;
     --branco: #FFFFFFFF;
@@ -31,12 +23,26 @@ html {
 
 }
 
+.dark-theme {
+    --background-color: var(--preto);
+    --text-color: var(--branco);
+    --secondary-color: var(--cinza);
+}
+
+.light-theme {
+    --background-color: var(--branco);
+    --text-color: var(--preto);
+    --secondary-color: var(--branco2);
+}
+
 body {
     /* display: flex; */
     height: 100vh;
     /* view height */
     width: 100vw;
     /* view width */
+    /* background-color: var(--branco); */
+    /* color: var(--branco); */
 }
 
 header {
@@ -47,7 +53,7 @@ header {
     background-color: var(--preto);
     width: 100vw;
     height: 20vh;
-    color: var(--branco);
+    /* color: var(--branco); */
     /* padding: 10px; */
 }
 
@@ -128,7 +134,8 @@ header nav a {
     justify-content: center;
     align-items: center;
     padding: 0 var(--spacing);
-    border-top: 2px solid #333; /* Adiciona uma linha superior para separar visualmente */
+    border-top: 2px solid #333;
+    /* Adiciona uma linha superior para separar visualmente */
 }
 
 .footer-link {
@@ -139,7 +146,8 @@ header nav a {
 }
 
 .footer-link:hover {
-    color: var(--cor-hover); /* Muda a cor ao passar o mouse */
+    color: var(--cor-hover);
+    /* Muda a cor ao passar o mouse */
 }
 
 .footer span {
