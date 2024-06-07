@@ -1,5 +1,5 @@
 // Constants and variables
-const currentIndex = 0;
+var currentIndex = 0;
 const items = document.querySelectorAll('.carousel-item');
 const totalItems = items.length;
 const themeToggle = document.getElementById('themeToggle');
