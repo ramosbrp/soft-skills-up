@@ -21,7 +21,7 @@ body{
 
 main {
     width: 100vw;
-    background-color: var(--preto);
+    background-color: var(--background-color);
     color: var(--branco);
 
     /* grid */
@@ -85,7 +85,7 @@ main {
 }
 
 #comece-agora button a{
-    color: #1C1718;
+    color: var(--text-color);
     text-decoration: none;
 }
 
@@ -101,7 +101,6 @@ main {
     width: 120px;
     height: 56px;
     margin-left: 10px;
-    /* margin-top: 50px; */
 }
 
 #section2 span {
@@ -242,7 +241,7 @@ main {
 
 /* CARROSSEL */
 #section4 {
-    background-color: #1C1718;
+    background-color: var(--background-color);
     width: 100vw;
     height: 100vh;
     display: flex;

@@ -1,50 +1,64 @@
-let currentIndex = 0;
+// Constants and variables
+const currentIndex = 0;
 const items = document.querySelectorAll('.carousel-item');
 const totalItems = items.length;
 const themeToggle = document.getElementById('themeToggle');
+const leftArrow = document.querySelector('.left-arrow');
+const rightArrow = document.querySelector('.right-arrow');
 
+// Event listeners
+addEventListeners();
 
-themeToggle.addEventListener('click', () => {
+/**
+ * Adds all event listeners
+ */
+function addEventListeners() {
+    // Toggle themes between light and dark
+    themeToggle.addEventListener('click', toggleTheme);
 
-    /// Toggle themes on the <html> element
-    document.documentElement.classList.toggle('dark-theme');
-    document.documentElement.classList.toggle('light-theme');
+    // Carousel navigation
+    leftArrow.addEventListener('click', showPreviousItem);
+    rightArrow.addEventListener('click', showNextItem);
+}
 
-    // Toggle themes specifically for the header or other elements if needed
-    let elementsToToggle = document.querySelectorAll('.header, .other-class');
-    elementsToToggle.forEach(element => {
-        element.classList.toggle('dark-theme');
-        element.classList.toggle('light-theme');
-    });
+/**
+ * Alterar temas
+ */
+function toggleTheme() {
+    let targetTheme;
+    let currentTheme = document.documentElement.getAttribute("data-theme");
+    if (currentTheme === "light") {
+        targetTheme = "dark";
+    } else {
+        targetTheme = "light";
+    }
+    document.documentElement.setAttribute("data-theme", targetTheme);
+}
 
-    // Update button text based on the current theme
-    this.textContent = document.documentElement.classList.contains('dark-theme') ? 'Tema Claro' : 'Tema Escuro';
+/**
+ * Item anteriror carousel
+ */
+function showPreviousItem() {
+    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+    updateCarousel();
+}
 
-    console.log(document.documentElement.classList);
-});
-// Funções
+/**
+ * Próximo item carousel
+ */
+function showNextItem() {
+    currentIndex = (currentIndex + 1) % totalItems;
+    updateCarousel();
+}
+
+/**
+ * Atualiza carousel
+ */
 function updateCarousel() {
     items.forEach((item, index) => {
-        if (index === currentIndex) {
-            item.style.display = 'flex';
-        } else {
-            item.style.display = 'none';
-        }
+        item.style.display = (index === currentIndex) ? 'flex' : 'none';
     });
 }
 
-document.querySelector('.left-arrow').addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + totalItems) % totalItems;
-    updateCarousel();
-});
-
-document.querySelector('.right-arrow').addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % totalItems;
-    updateCarousel();
-});
-
-// Initialize the carousel
+// Initializa o carousel
 updateCarousel();
-
-
-
