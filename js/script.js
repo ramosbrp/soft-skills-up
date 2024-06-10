@@ -6,6 +6,8 @@ const themeToggle = document.getElementById('themeToggle');
 const leftArrow = document.querySelector('.left-arrow');
 const rightArrow = document.querySelector('.right-arrow');
 
+
+
 // Event listeners
 addEventListeners();
 
@@ -19,6 +21,7 @@ function addEventListeners() {
     // Carousel navigation
     leftArrow.addEventListener('click', showPreviousItem);
     rightArrow.addEventListener('click', showNextItem);
+    
 }
 
 /**

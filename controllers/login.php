@@ -12,21 +12,14 @@ $dbDatabase = $_ENV['DB_DATABASE'];
 $dbUser = $_ENV['DB_USERNAME'];
 $dbPassword = $_ENV['DB_PASSWORD'];
 
-
-// Conecte-se ao banco de dados
-$hostname = $dbHost;
-$bancoDeDados = $dbDatabase;
-$usuario = $dbUser;
-$senha = $dbPassword;
-
 // print_r($_ENV); // Lista todas as variáveis de ambiente para testar apenas
 
-
-$conn = new mysqli($hostname, $usuario, $senha, $bancoDeDados);
-if ($conn->connect_errno) {
-    echo "Falha ao conectar:(" . $conn->connect_errno . ")" . $conn->connect_errno;
-} else
-    echo "<script>console.log('Conectado ao Banco de Dados')</script>";
+try {
+    $conn = new PDO("sqlsrv:server = tcp:$dbHost; Database = $dbDatabase", $dbUser, $dbPassword);
+} catch (Exception $e) {
+    print ("Error connecting to SQL Server.");
+    die(print_r($e->getMessage()));
+}
 
 
 // Consulta SQL para verificar o usuário
@@ -34,26 +27,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $login = $_POST['login'];
     $senha = $_POST['senha'];
 
-    $query = "SELECT * FROM usuario WHERE login = ?";
+    // Consulta SQL para verificar o usuário
+    $query = "SELECT * FROM usuario WHERE login = :login";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("s", $login);
+    $stmt->bindParam(':login', $login, PDO::PARAM_STR);
     $stmt->execute();
 
-    //Obter o resultado
-    $result = $stmt->get_result();
+    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $num_rows = count($results);
 
-    if ($result->num_rows > 0) {
+    if ($num_rows > 0) {
         //Usuário encontrado
-        $row = $result->fetch_assoc();
-        $hash_senha = $row['senha'];
+        $user = $results[0];
+        $hash_senha = $user['senha'];
 
         if (password_verify($senha, $hash_senha)) {
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $login;
-            echo "<script>
-                alert('Login bem sucedido');
-                window.location.href = '../pages/artigo.html';
-                </script>";
+            
+            // Enviar resposta JSON em vez de redirecionar diretamente
+            echo json_encode(['success' => true, 'message' => 'Login bem-sucedido', 'username' => $login]);
         } else {
             echo "<script>
                 alert('Senha incorreta');
@@ -61,9 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } else {
         echo "<script>
-                alert('Usuário não encontrado');
+                alert('Usuário não encontrado')
                 </script>";
     }
-    $stmt->close();
-    $conn->close();
 }

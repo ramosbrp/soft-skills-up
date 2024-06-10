@@ -9,7 +9,7 @@ const userDropdown = document.getElementById('userDropdown');
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+    var isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
     updateHeader(isLoggedIn);
 
 

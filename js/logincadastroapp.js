@@ -17,6 +17,7 @@ const estado = document.getElementById('estado');
 const email = document.getElementById('email');
 const telefone = document.getElementById('telefone');
 const viaCepAPI = 'https://viacep.com.br/ws';
+const loginForm = document.getElementById('login-form');
 
 
 // Event Listeners
@@ -54,6 +55,7 @@ dataNascimento.addEventListener('blur', () => {
   validarIdade('');
 });
 
+
 // Event listener para preencher os campos de endereço ao perder o foco do campo CEP
 cep.addEventListener('blur', function () {
   const cep = this.value.replace(/\D/g, '');
@@ -75,7 +77,10 @@ telefone.addEventListener('blut', () => {
   validarTelefone('telefone');
 });
 
-
+loginForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  logar(this);
+});
 
 // Funcções
 // Função genérica para validar texto
@@ -347,6 +352,30 @@ if (campoTelefone) {
   });
 }
 
+// Função login
+const logar= (formElement)=> {
+  console.log('Login attempt');
+  const formData = new FormData(formElement); // Usar o elemento do formulário passado como argumento
+  fetch('../controllers/login.php', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('username', data.username);
+        window.location.href = '../pages/artigo.html'; // Redirecionar para a página de artigo
+      } else {
+        alert(data.message); // Mostrar erro
+        localStorage.setItem('isLoggedIn', 'false');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      alert('An error occurred during login.');
+    });
+}
 
 
 
