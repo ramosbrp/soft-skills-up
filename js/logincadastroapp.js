@@ -84,7 +84,7 @@ loginForm.addEventListener('submit', function (event) {
 
 // Funcções
 // Função genérica para validar texto
-function validarTexto(idCampo, mensagemErro, minCaracteres, maxCaracteres, regex) {
+const validarTexto = (idCampo, mensagemErro, minCaracteres, maxCaracteres, regex) => {
   const elemento = document.getElementById(idCampo);
   if (!elemento) {
     console.error(`Elemento com ID ${idCampo} não encontrado.`);
@@ -127,34 +127,34 @@ function validarTexto(idCampo, mensagemErro, minCaracteres, maxCaracteres, regex
 }
 
 // Função para validar nome
-function validarNome(idCampo) {
+const validarNome = (idCampo) => {
   const mensagemErro = 'O nome não pode possuir números ou caracteres especiais';
   const regex = /^[A-Za-zÀ-ÿ\s]+$/;
   return validarTexto(idCampo, mensagemErro, 15, 80, regex);
 }
 
 // Função para validar nome materno
-function validarNomeMae(idCampo) {
+const validarNomeMae = (idCampo) => {
   const mensagemErro = 'O nome não pode possuir números ou caracteres especiais';
   const regex = /^[A-Za-zÀ-ÿ\s]+$/;
   return validarTexto(idCampo, mensagemErro, 5, 80, regex);
 }
 
 // Função para validar CPF
-function validarCPF(idCampo) {
+const validarCPF = (idCampo) => {
   const mensagemErro = 'CPF inválido';
   const regex = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/;
   return validarTexto(idCampo, mensagemErro, 14, 14, regex);
 }
 
 // Função para validar e-mail
-function validarEmail(idCampo) {
+const validarEmail = (idCampo) => {
   const mensagemErro = 'Formato de e-mail inválido';
   const regex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
   return validarTexto(idCampo, mensagemErro, 0, Infinity, regex);
 }
 
-function validarTelefone(idCampo) {
+const validarTelefone = (idCampo) => {
   const mensagemErro = 'O telefone deve ser válido';
   const regex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
   const elemento = document.getElementById(idCampo);
@@ -188,7 +188,7 @@ function validarTelefone(idCampo) {
 }
 // Função para formatar número de telefone
 
-function formatarNumeroTelefone(numero) {
+const formatarNumeroTelefone = (numero) => {
   // Remove todos os caracteres não numéricos do número
   const digitsOnly = numero.replace(/\D/g, '');
 
@@ -203,7 +203,7 @@ function formatarNumeroTelefone(numero) {
 }
 
 // Função para mascarar CEP
-function mascaraCEP(campo) {
+const mascaraCEP = (campo) => {
   campo.maxLength = 9;
   campo.addEventListener('input', function (event) {
     event.target.value = event.target.value.replace(/\D/g, '')
@@ -212,7 +212,7 @@ function mascaraCEP(campo) {
 }
 
 // Função para validar idade
-function validarIdade(idCampo) {
+const validarIdade = (idCampo) => {
   const elemento = document.getElementById(idCampo);
   if (!elemento) {
     console.error(`Elemento com ID ${idCampo} não encontrado.`);
@@ -246,7 +246,7 @@ function validarIdade(idCampo) {
 }
 
 // Função para mascarar CPF
-function mascaraCPF(campo) {
+const mascaraCPF = (campo) => {
   campo.maxLength = 14;
   campo.addEventListener('input', function (event) {
     event.target.value = event.target.value.replace(/\D/g, '')
@@ -257,7 +257,7 @@ function mascaraCPF(campo) {
 }
 
 // Função para calcular idade
-function calcularIdade(dataNascimento) {
+const calcularIdade = (dataNascimento) => {
   const hoje = new Date();
   const nascimento = new Date(dataNascimento);
   let idade = hoje.getFullYear() - nascimento.getFullYear();
@@ -271,7 +271,7 @@ function calcularIdade(dataNascimento) {
 }
 
 // Função para validar CEP com o preenchimento automático
-function validarCEP(idCampo) {
+const validarCEP = (idCampo) => {
   const elemento = document.getElementById(idCampo);
   if (!elemento) {
     console.error(`Elemento com ID ${idCampo} não encontrado.`);
@@ -295,7 +295,7 @@ if (campoCPF) {
 }
 
 // Função para buscar endereço pelo CEP
-async function buscarEndereco(cep) {
+const buscarEndereco = async (cep) => {
 
   try {
     const response = await fetch(`${viaCepAPI}/${cep}/json/`);
@@ -319,7 +319,7 @@ async function buscarEndereco(cep) {
 }
 
 // Função para validar campo preenchido
-function validarCampoPreenchido(idCampo) {
+const validarCampoPreenchido = (idCampo) => {
   const elemento = document.getElementById(idCampo);
   if (!elemento) {
     console.error(`Elemento com ID ${idCampo} não encontrado.`);
@@ -353,28 +353,31 @@ if (campoTelefone) {
 }
 
 // Função login
-const logar= (formElement)=> {
+const logar = async (formElement) => {
   console.log('Login attempt');
   const formData = new FormData(formElement); // Usar o elemento do formulário passado como argumento
-  fetch('../controllers/login.php', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => response.json())
-    .then(data => {
-      if (data.success) {
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('username', data.username);
-        window.location.href = '../pages/artigo.html'; // Redirecionar para a página de artigo
-      } else {
-        alert(data.message); // Mostrar erro
-        localStorage.setItem('isLoggedIn', 'false');
-      }
+  try {
+    const response = await fetch('../controllers/login.php', {
+      method: 'POST',
+      body: formData
     })
-    .catch(error => {
-      console.error('Error:', error);
-      alert('An error occurred during login.');
-    });
+    if (!response.ok)
+      throw new Error("Error");
+
+    const data = await response.json();
+    if (data.success) {
+      localStorage.setItem('isLoggedIn', 'true');
+      localStorage.setItem('username', data.username);
+      window.location.href = '../pages/artigo.html'; // Redirecionar para a página de artigo
+    } else {
+      alert(data.message); // Mostrar erro
+      localStorage.setItem('isLoggedIn', 'false');
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred during login.');
+  }
+
 }
 
 
