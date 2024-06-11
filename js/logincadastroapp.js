@@ -18,6 +18,7 @@ const email = document.getElementById('email');
 const telefone = document.getElementById('telefone');
 const viaCepAPI = 'https://viacep.com.br/ws';
 const loginForm = document.getElementById('login-form');
+const cadastroForm = document.getElementById('cadastro-form');
 
 
 // Event Listeners
@@ -32,6 +33,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (event.target == signupModal) {
       signupModal.style.display = 'none';
     }
+  });
+
+  loginForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    logar(event.target);
+  });
+
+  cadastroForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    cadastrar(event.target);
   });
 });
 
@@ -52,7 +63,7 @@ nomeMae.addEventListener('blur', () => {
 });
 
 dataNascimento.addEventListener('blur', () => {
-  validarIdade('');
+  validarIdade('dataNascimento');
 });
 
 
@@ -77,10 +88,10 @@ telefone.addEventListener('blut', () => {
   validarTelefone('telefone');
 });
 
-loginForm.addEventListener('submit', function (event) {
-  event.preventDefault();
-  logar(this);
-});
+
+
+
+
 
 // Funcções
 // Função genérica para validar texto
@@ -354,9 +365,11 @@ if (campoTelefone) {
 
 // Função login
 const logar = async (formElement) => {
-  console.log('Login attempt');
+
   const formData = new FormData(formElement); // Usar o elemento do formulário passado como argumento
+
   try {
+
     const response = await fetch('../controllers/login.php', {
       method: 'POST',
       body: formData
@@ -365,22 +378,61 @@ const logar = async (formElement) => {
       throw new Error("Error");
 
     const data = await response.json();
+
     if (data.success) {
       localStorage.setItem('isLoggedIn', 'true');
       localStorage.setItem('username', data.username);
-      window.location.href = '../pages/artigo.html'; // Redirecionar para a página de artigo
+
+      $(document).ready(function () {
+        toastr.success(data.message);
+        setTimeout(function () {
+          window.location.href = '../pages/app.html';
+        }, 2000);
+      });
+
     } else {
-      alert(data.message); // Mostrar erro
+      $(document).ready(() => {
+        toastr.error(data.message);
+      });
+
       localStorage.setItem('isLoggedIn', 'false');
     }
   } catch (error) {
     console.error('Error:', error);
-    alert('An error occurred during login.');
+    toastr.error('An error occurred during login.');
   }
 
 }
 
+// Função cadastrar
+const cadastrar = async (formElement) => {
 
+  const formData = new FormData(formElement);
+
+  try {
+    const response = await fetch('../controllers/cadastro.php', {
+      method: 'POST',
+      body: formData
+    });
+    if (!response.ok)
+      throw new Error("Error");
+
+
+    const data = await response.json();
+
+    if (data.success) {
+      $(document).ready(function () {
+        toastr.success('Usuário cadastrado!');
+        setTimeout(() => {
+          container.classList.remove("sign-up-mode");
+        }, 2000);
+      });
+    }
+  } catch (error) {
+    console.error('Registration Error:', error);
+    toastr.error(error.toString());
+  }
+}
 
 
 

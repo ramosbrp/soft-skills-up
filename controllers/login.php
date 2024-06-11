@@ -44,17 +44,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (password_verify($senha, $hash_senha)) {
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $login;
-            
-            // Enviar resposta JSON em vez de redirecionar diretamente
-            echo json_encode(['success' => true, 'message' => 'Login bem-sucedido', 'username' => $login]);
+
+            $responseArray = ['success' => true, 'message' => 'Login bem-sucedido!', 'username' => $login];
+            echo json_encode($responseArray);
+
         } else {
-            echo "<script>
-                alert('Senha incorreta');
-                </script>";
+            $responseArray = ['success' => false, 'message' => 'Senha incorreta.'];
+            echo json_encode($responseArray);
         }
     } else {
-        echo "<script>
-                alert('Usuário não encontrado')
-                </script>";
+        $responseArray = ['success' => false, 'message' => "Usuário $login não encontrado. "];
+        echo json_encode($responseArray);
     }
 }

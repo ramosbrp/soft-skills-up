@@ -1,4 +1,7 @@
 <?php
+session_start();
+
+header('Content-Type: application/json');
 
 require_once '../vendor/autoload.php';
 
@@ -39,38 +42,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $signupPassword = password_hash($_POST['signupPassword'], PASSWORD_BCRYPT);
     $cod_rec = '';
 
+    try {
+        // Consulta SQL para inserir o novo usuário
+        $stmt = $conn->prepare("INSERT INTO usuario (nome, nome_mae, data_nascimento, cpf, email, telefone, cep, rua, numero, complemento, bairro, cidade, estado, login, senha, cod_rec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-    // Consulta SQL para inserir o novo usuário
-    $stmt = $conn->prepare("INSERT INTO usuario (nome, nome_mae, data_nascimento, cpf, email, telefone, cep, rua, numero, complemento, bairro, cidade, estado, login, senha, cod_rec) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bindParam(1, $name);
+        $stmt->bindParam(2, $nomeMae);
+        $stmt->bindParam(3, $data_nascimento);
+        $stmt->bindParam(4, $cpf);
+        $stmt->bindParam(5, $email);
+        $stmt->bindParam(6, $telefone);
+        $stmt->bindParam(7, $cep);
+        $stmt->bindParam(8, $rua);
+        $stmt->bindParam(9, $numero);
+        $stmt->bindParam(10, $complemento);
+        $stmt->bindParam(11, $bairro);
+        $stmt->bindParam(12, $cidade);
+        $stmt->bindParam(13, $estado);
+        $stmt->bindParam(14, $signupUsername);
+        $stmt->bindParam(15, $signupPassword);
+        $stmt->bindParam(16, $cod_rec);
 
-    $stmt->bindParam(1, $name);
-    $stmt->bindParam(2, $nomeMae);
-    $stmt->bindParam(3, $data_nascimento);
-    $stmt->bindParam(4, $cpf);
-    $stmt->bindParam(5, $email);
-    $stmt->bindParam(6, $telefone);
-    $stmt->bindParam(7, $cep);
-    $stmt->bindParam(8, $rua);
-    $stmt->bindParam(9, $numero);
-    $stmt->bindParam(10, $complemento);
-    $stmt->bindParam(11, $bairro);
-    $stmt->bindParam(12, $cidade);
-    $stmt->bindParam(13, $estado);
-    $stmt->bindParam(14, $signupUsername);
-    $stmt->bindParam(15, $signupPassword);
-    $stmt->bindParam(16, $cod_rec);
-
-    if ($stmt->execute()) {
-        echo "<script>
-                alert('Cadastro realizado com sucesso!');
-                window.location.href = '../pages/login.html';
-              </script>";
-    } else {
-        echo "<script>
-                alert('Erro ao cadastrar. Tente novamente.');
-                window.location.href = '../pages/login.html';
-              </script>";
+        if ($stmt->execute()) {
+            $responseArray = ['success' => true, 'message' => 'Cadastro realizado com sucesso!'];
+            echo json_encode($responseArray);
+        } else {
+            throw new Exception("Failed to execute the SQL statement.");
+        }
+    } catch (Exception $e) {
+        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
-    $stmt->close();
-    $conn->close();
 }
