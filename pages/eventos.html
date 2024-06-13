@@ -14,13 +14,22 @@
 
 <body>
 
-    <header class="header">
+    <header class="header light-theme">
         <nav>
             <a href="../index.html" class="">Início</a>
-            <a href="#" class="">Eventos</a>
-            <a href="../index.html/#section4" class="">Preços</a>
+            <a href="./pages/eventos.html" class="">Eventos</a>
+            <a href="../index.html#section4" class="">Preços</a>
 
         </nav>
+
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="themeToggle">
+                <input type="checkbox" id="themeToggle" />
+                <div class="slider round"></div>
+            </label>
+            <em>Ativar o modo escuro!</em>
+        </div>
+
         <div id="login1">
 
             <!-- Link de Login visível quando não logado -->
@@ -42,32 +51,30 @@
     </header>
 
     <main class="main">
-        <main>
-            <section class="events">
-                <h1>Próximos Eventos</h1>
-                <div class="event">
-                    <h2>Workshop de Comunicação Eficaz</h2>
-                    <p>Data: 15 de Julho, 2023 - Online</p>
-                    <p>Desenvolva suas habilidades de comunicação e aprenda técnicas para melhorar sua eficácia no
-                        ambiente de trabalho.</p>
-                    <button onclick="location.href='url_para_inscricao.html';">Inscreva-se</button>
-                </div>
-                <div class="event">
-                    <h2>Webinar: Liderança e Gestão de Equipes</h2>
-                    <p>Data: 22 de Julho, 2023 - Online</p>
-                    <p>Explore as dinâmicas de liderança e obtenha insights sobre como gerenciar equipes de maneira
-                        eficiente e respeitosa.</p>
-                    <button onclick="location.href='url_para_inscricao.html';">Inscreva-se</button>
-                </div>
-                <div class="event">
-                    <h2>Sessão de Networking para Profissionais</h2>
-                    <p>Data: 29 de Julho, 2023 - Presencial</p>
-                    <p>Uma oportunidade única para expandir sua rede de contatos e praticar suas habilidades
-                        interpessoais com outros profissionais.</p>
-                    <button onclick="location.href='url_para_inscricao.html';">Inscreva-se</button>
-                </div>
-            </section>
-        </main>
+        <section class="events">
+            <h1>Próximos Eventos</h1>
+            <div class="event">
+                <h2>Workshop de Comunicação Eficaz</h2>
+                <p>Data: 15 de Julho, 2023 - Online</p>
+                <p>Desenvolva suas habilidades de comunicação e aprenda técnicas para melhorar sua eficácia no
+                    ambiente de trabalho.</p>
+                <button onclick="location.href='url_para_inscricao.html';">Inscreva-se</button>
+            </div>
+            <div class="event">
+                <h2>Webinar: Liderança e Gestão de Equipes</h2>
+                <p>Data: 22 de Julho, 2023 - Online</p>
+                <p>Explore as dinâmicas de liderança e obtenha insights sobre como gerenciar equipes de maneira
+                    eficiente e respeitosa.</p>
+                <button onclick="location.href='url_para_inscricao.html';">Inscreva-se</button>
+            </div>
+            <div class="event">
+                <h2>Sessão de Networking para Profissionais</h2>
+                <p>Data: 29 de Julho, 2023 - Presencial</p>
+                <p>Uma oportunidade única para expandir sua rede de contatos e praticar suas habilidades
+                    interpessoais com outros profissionais.</p>
+                <button onclick="location.href='url_para_inscricao.html';">Inscreva-se</button>
+            </div>
+        </section>
 
     </main>
 

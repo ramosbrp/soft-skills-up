@@ -9,24 +9,25 @@ const rightArrow = document.querySelector('.right-arrow');
 
 
 // Event listeners
-addEventListeners();
 
 /**
  * Adds all event listeners
  */
-function addEventListeners() {
+document.addEventListener('DOMContentLoaded', () => {
     // Toggle themes between light and dark
-    themeToggle.addEventListener('click', toggleTheme);
+    themeToggle.addEventListener('change', toggleTheme);
 
     // Carousel navigation
     leftArrow.addEventListener('click', showPreviousItem);
     rightArrow.addEventListener('click', showNextItem);
-    
-}
+
+});
+
 
 /**
- * Alterar temas
+ * Funções
  */
+ //Função mudar tema
 function toggleTheme() {
     let targetTheme;
     let currentTheme = document.documentElement.getAttribute("data-theme");

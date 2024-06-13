@@ -1,4 +1,5 @@
-body{
+body {
+    padding: 0;
 }
 
 /* GRID-AREA */
@@ -20,6 +21,7 @@ body{
 
 
 main {
+    margin-top: 200px;
     width: 100vw;
     background-color: var(--background-color);
     color: var(--branco);
@@ -67,9 +69,9 @@ main {
 }
 
 #linha {
-    border-bottom: white solid 1px;
+    border-bottom: var(--text-color) 2px;
     width: 100%;
-    height: 20px;
+    height: 22px;
 }
 
 #comece-agora button {
@@ -84,7 +86,7 @@ main {
     background-size: auto;
 }
 
-#comece-agora button a{
+#comece-agora button a {
     color: var(--text-color);
     text-decoration: none;
 }
@@ -200,12 +202,12 @@ main {
     border: solid #1C1718 20px;
 }
 
-.temas-border{
+.temas-border {
     border: .05px solid #D9D9D9;
     border-radius: 30px;
 }
 
-.temas-icone-redondo{
+.temas-icone-redondo {
     width: 40px;
     height: 40px;
     display: flex;
@@ -213,29 +215,29 @@ main {
     justify-content: center;
 }
 
-.temas-buton1{
+.temas-buton1 {
     text-align: center;
     background-color: #1C1718;
     width: 160px;
     height: 32px;
 }
 
-.claro{
+.claro {
     background-color: #D9D9D9;
     color: #1C1718;
 }
 
-.temas-div-flex-column{
+.temas-div-flex-column {
     display: flex;
     flex-flow: row;
 
 }
 
-.temas-div-flex-column >div:nth-child(2){
+.temas-div-flex-column>div:nth-child(2) {
     margin-left: 50px;
 }
 
-#temas >div:nth-child(2){
+#temas>div:nth-child(2) {
     margin-left: 120px;
 }
 
@@ -250,7 +252,7 @@ main {
     justify-content: center;
 }
 
-.section4 div{
+.section4 div {
     color: #e44320;
 }
 
@@ -280,21 +282,21 @@ main {
 
 }
 
-.carousel-item div{
+.carousel-item div {
     color: #D9D9D9;
 }
 
-#carousel-item-div1{
+#carousel-item-div1 {
     display: flex;
     flex-flow: row;
     justify-content: end;
 }
 
-#carousel-item-div1 img{
+#carousel-item-div1 img {
     margin-left: 300px;
 }
 
-#carousel-item-div2{
+#carousel-item-div2 {
     font-size: 26px;
     font-family: poppins;
 }
@@ -304,26 +306,26 @@ main {
     flex-flow: column;
 }
 
-#carousel-item-div3 >div:nth-child(1) {
+#carousel-item-div3>div:nth-child(1) {
     font-size: 13px;
 }
 
-#carousel-item-div3 >div:nth-child(2){
+#carousel-item-div3>div:nth-child(2) {
     font-size: 100px;
     line-height: 100px;
     height: 100px;
     margin-left: 20px;
 }
 
-#carousel-item-div3 >div:nth-child(2) span{
+#carousel-item-div3>div:nth-child(2) span {
     font-size: 23px;
 }
 
-#carousel-item-div4{
+#carousel-item-div4 {
     font-size: 12px;
 }
 
-#carousel-item-div5 button{
+#carousel-item-div5 button {
     border-radius: 30px;
     color: #E44320;
     width: 143px;
@@ -348,6 +350,3 @@ main {
     position: absolute;
     margin-right: -1000px;
 }
-
-
-

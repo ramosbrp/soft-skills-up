@@ -386,7 +386,7 @@ const logar = async (formElement) => {
       $(document).ready(function () {
         toastr.success(data.message);
         setTimeout(function () {
-          window.location.href = '../pages/app.html';
+          window.location.href = '../pages/artigo.html';
         }, 2000);
       });
 
