@@ -23,7 +23,7 @@ try {
 
 $level = isset($_POST['level']) ? $_POST['level'] : 1;
 
-$query = "SELECT id, question_text FROM questions WHERE level = :level";
+$query = "SELECT id, question_text, level FROM questions WHERE level = :level";
 $stmt = $conn->prepare($query);
 $stmt->bindParam(':level', $level, PDO::PARAM_INT);
 $stmt->execute();
@@ -37,7 +37,7 @@ if ($question) {
     $stmt = $conn->prepare($options_query);
     $stmt->bindParam(":questionId", $questionId, PDO::PARAM_INT);
     $stmt->execute();
-    
+
     $options = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     $responseArray = [
