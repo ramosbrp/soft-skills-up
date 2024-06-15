@@ -33,7 +33,7 @@ $question = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($question) {
 
     $questionId = $question["id"];
-    $options_query = "SELECT id, option_text FROM options WHERE question_id =:questionId";
+    $options_query = "SELECT id, option_text, points FROM options WHERE question_id =:questionId";
     $stmt = $conn->prepare($options_query);
     $stmt->bindParam(":questionId", $questionId, PDO::PARAM_INT);
     $stmt->execute();

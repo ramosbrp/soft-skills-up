@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
         $level = isset($level) ? $level : 1;
 
-        $query = "SELECT id, question_text FROM questions WHERE level = :level";
+        $query = "SELECT id, question_text, level FROM questions WHERE level = :level";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':level', $level, PDO::PARAM_INT);
         $stmt->execute();
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($question) {
 
             $questionId = $question["id"];
-            $options_query = "SELECT id, option_text FROM options WHERE question_id =:questionId";
+            $options_query = "SELECT id, option_text, points FROM options WHERE question_id =:questionId";
             $stmt = $conn->prepare($options_query);
             $stmt->bindParam(":questionId", $questionId, PDO::PARAM_INT);
             $stmt->execute();

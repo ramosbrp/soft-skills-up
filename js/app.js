@@ -3,12 +3,12 @@
  */
 
 const quizForm = document.getElementById('quiz-form');
-const quizOptions = Array.from(document.querySelectorAll('.quiz-option'));
+
 const scoreElement = document.getElementById('score');
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const level = document.getElementById('level');
-var score = 0;
+let score = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -73,7 +73,7 @@ const mostrarPergunta = (questionData) => {
         optionElement.className = 'quiz-option';
 
         //Cria um label para o input
-        label.textContent = option.option_text;
+        label.textContent = 'opção';
         label.htmlFor = option.option_id;
 
         p.textContent = option.option_text;
@@ -86,25 +86,33 @@ const mostrarPergunta = (questionData) => {
         optionContainer.appendChild(p);
         optionsContainer.appendChild(optionContainer);
         optionsContainer.appendChild(level);
+        optionContainer.setAttribute('data-score', option.points);
     });
 }
 
 const enviarResposta_ = async () => {
     let selectedOptionScore = 0;
     let selectedOptionId = 0;
-    let questionLevel = 0;
+    let questionLevel = 1;
+    
+    const quizOptions = Array.from(document.querySelectorAll('.quiz-option'));
 
     quizOptions.forEach((option) => {
         if (option.checked) {
             let parentDiv = option.closest('.app-opcoes');
             selectedOptionScore = parseInt(parentDiv.getAttribute('data-score'));
-            selectedOptionId = optionScore;
-
+            // selectedOptionId = ;
         }
     })
+    if (score == 0) {
+        score = selectedOptionScore;
+    } else {
+        console.log(score);
+        score += selectedOptionScore;
+        console.log(score);
+    }
     scoreElement.textContent = score;
-    console.log(selectedOptionScore, questionLevel, selectedOptionId);
-    questionLevel = level.value;
+
     try {
         const response = await fetch('../controllers/process_answer.php', {
             method: 'POST',
@@ -116,7 +124,6 @@ const enviarResposta_ = async () => {
 
         if (!response.ok)
             throw new Error("Error");
-
 
         const data = await response.json();
         mostrarPergunta(data);
