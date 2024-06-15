@@ -145,6 +145,7 @@ form.sign-in-form {
     /* O campo Login ocupa toda a largura do formulário */
 }
 
+
 /* Estilo para a mensagem de erro */
 .error-message {
     color: rgb(255, 0, 0);

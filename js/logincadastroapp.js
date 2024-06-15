@@ -19,6 +19,8 @@ const telefone = document.getElementById('telefone');
 const viaCepAPI = 'https://viacep.com.br/ws';
 const loginForm = document.getElementById('login-form');
 const cadastroForm = document.getElementById('cadastro-form');
+const signupPassword = document.getElementById('signupPassword');
+const reSignupPassword = document.getElementById('reSignupPassword');
 
 
 // Event Listeners
@@ -66,7 +68,6 @@ dataNascimento.addEventListener('blur', () => {
   validarIdade('dataNascimento');
 });
 
-
 // Event listener para preencher os campos de endereço ao perder o foco do campo CEP
 cep.addEventListener('blur', function () {
   const cep = this.value.replace(/\D/g, '');
@@ -88,6 +89,12 @@ telefone.addEventListener('blut', () => {
   validarTelefone('telefone');
 });
 
+// Verifica se as senhas são iguais
+reSignupPassword.addEventListener('change', ()=>{
+  console.log(reSignupPassword.value);
+  if(reSignupPassword.value != signupPassword.value)
+    toastr.error('As senha devem ser iguais.');
+});
 
 
 
@@ -107,7 +114,8 @@ const validarTexto = (idCampo, mensagemErro, minCaracteres, maxCaracteres, regex
   elemento.classList.remove("is-valid", "is-invalid");
 
   if (texto.length === 0) {
-    spanError.textContent = 'O campo não pode estar vazio';
+    spanError.textContent = 'O campo não pode estar vazio.';
+    toastr.error('Revise os campos');
     elemento.classList.add('is-invalid');
     return false;
   }
@@ -236,7 +244,7 @@ const validarIdade = (idCampo) => {
   elemento.classList.remove("is-valid", "is-invalid");
 
   if (!dataNascimento) {
-    spanError.textContent = 'A data de nascimento não pode estar vazia';
+    toastr.error('A data de nascimento não pode estar vazia.');
     elemento.classList.add("is-invalid");
     return false;
   }
@@ -244,7 +252,7 @@ const validarIdade = (idCampo) => {
   const idade = calcularIdade(dataNascimento);
 
   if (idade < 18 || idade > 120) {
-    spanError.textContent = 'A idade deve ser maior que 18';
+    toastr.error('A idade deve ser maior que 18.');
     elemento.classList.add("is-invalid");
     return false;
   }
@@ -294,7 +302,8 @@ const validarCEP = (idCampo) => {
   elemento.classList.remove("is-valid", "is-invalid");
 
   if (cep.length !== 8) {
-    span.textContent = 'CEP inválido';
+    span.textContent = 'CEP inválido.';
+    toastr.error('CEP inválido.');
     elemento.classList.add('is-invalid');
     return false;
   }
@@ -315,7 +324,7 @@ const buscarEndereco = async (cep) => {
 
     const data = await response.json();
     if (data.erro) {
-      alert("CEP não encontrado");
+      toastr.error('CEP não encontrado');
       return
     }
     rua.value = data.logradouro;
@@ -324,13 +333,14 @@ const buscarEndereco = async (cep) => {
     bairro.value = data.bairro;
 
   } catch (error) {
-    alert(error.message);
+    toastr.error(error.message);
   }
 
 }
 
 // Função para validar campo preenchido
 const validarCampoPreenchido = (idCampo) => {
+  console.log(idCampo);
   const elemento = document.getElementById(idCampo);
   if (!elemento) {
     console.error(`Elemento com ID ${idCampo} não encontrado.`);
