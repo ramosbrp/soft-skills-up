@@ -41,7 +41,7 @@ input {
     top: 50%;
     transform: translate(-50%, -50%);
     left: 75%;
-    width: 50%;
+    width: 80%;
     transition: 1s 0.7s ease-in-out;
     display: grid;
     grid-template-columns: 1fr;
@@ -68,7 +68,7 @@ form.sign-up-form {
     gap: 15px;
     transition: all 0.2s 0.7s;
     overflow: auto;
-    max-height: 100vh;
+    height: 100vh;
     overflow-y: auto;
     align-items: center;
 
@@ -141,7 +141,6 @@ form.sign-in-form {
 }
 
 .login-field {
-    margin: 0px 50px;
     grid-column: 1 / -1;
     /* O campo Login ocupa toda a largura do formulário */
 }
@@ -243,18 +242,6 @@ span.notification.is-invalid {
 
 }
 
-.limpar:hover {
-    color: #E44320;
-    transition: 0.5s ease-in-out;
-    margin: auto;
-    /* Isso centraliza horizontalmente */
-    margin-left: 75%;
-    /* Adiciona espaço acima do botão */
-    display: block;
-    /* Garante que o botão seja exibido como um bloco */
-
-}
-
 .btn {
     grid-column: 1 / -1;
     width: 100%;
@@ -271,6 +258,10 @@ span.notification.is-invalid {
     margin: 10px 0;
     cursor: pointer;
     transition: 0.5s;
+}
+
+.entrar{
+    width: 50%;
 }
 
 .btn:hover {
