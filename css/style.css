@@ -163,10 +163,6 @@ header nav a {
     color: var(--text-color);
 }
 
-body {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-}
 
 /* Theme toggle */
 .theme-switch-wrapper {
