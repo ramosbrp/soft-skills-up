@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-theme="light" >
+<html lang="pt-br" data-theme="light">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,41 +8,50 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../css/app.css">
+  <link rel="stylesheet" href="../css/log_user.css">
 </head>
+
 <body>
+
   <header class="header">
     <nav>
-        <a href="../index.html" class="">Início</a>
-        <a href="#" class="">Eventos</a>
-        <a href="#" class="">Preços</a>
-        <a href="#" class="">Skills</a>
+      <a href="../index.html" class="">Início</a>
+      <a href="../pages/eventos.html" class="">Eventos</a>
+      <a href="#section4" class="">Preços</a>
+
     </nav>
-    <div class="score"  >
-        Score: <span id="score" >0</span>
+
+    <div class="theme-switch-wrapper">
+      <label class="theme-switch" for="themeToggle">
+        <input type="checkbox" id="themeToggle" />
+        <div class="slider round"></div>
+      </label>
+      <em>Ativar o modo escuro!</em>
     </div>
 
     <div id="login1">
 
       <!-- Link de Login visível quando não logado -->
-      <a href="" id="loginLink">Login
-          <img src="../assets/login.png" alt="">
+      <a href="#" id="loginLink">Login
+        <img src="/assets/login.png" alt="">
       </a>
-  </div>
+    </div>
 
-  <!-- Menu do usuário visível quando logado -->
-  <div id="userMenu" class="user-menu" style="display: none;">
+    <!-- Menu do usuário visível quando logado -->
+    <div id="userMenu" class="user-menu" style="display: none;">
       <button id="userButton"> <img src="../images/temas-menu.png" alt="Abrir menu"></button>
       <div id="userDropdown" class="dropdown-content" style="display: none;">
-          <a href="./consulta_usr.html">Consulta de Usuário</a>
-          <a href="./log_user.html">Log de Usuário</a>
-          <a href="#">Desconectar</a>
+        <a href="/pages/consulta_usr.html">Consulta de Usuário</a>
+        <a href="/pages/log_user.html">Log de Usuário</a>
+        <a href="/pages/app.html">App</a>
+        <a href="#" id="desconectar">Desconectar</a>
       </div>
-  </div>
-</header>
+    </div>
+  </header>
+
   <div class="container">
     <h1 class="my-4">Registro de Atividades de Usuário</h1>
-    
+
     <!-- Tabela de Registro de Atividades -->
     <table class="table">
       <thead>
@@ -69,7 +79,7 @@
       logTableBody.innerHTML = '';
 
       // Itera sobre os registros de atividades e os adiciona à tabela
-      loginLog.forEach(function(activity) {
+      loginLog.forEach(function (activity) {
         var row = logTableBody.insertRow();
         row.insertCell().textContent = new Date(activity.loginTime).toLocaleString();
         row.insertCell().textContent = activity.username;
@@ -99,7 +109,8 @@
     window.onload = displayLoginActivity;
   </script>
 
-<script src="../js/script.js"></script>
-<script type="module" src="../js/header.js"></script>
+  <script src="../js/script.js"></script>
+  <script type="module" src="../js/header.js"></script>
 </body>
+
 </html>
