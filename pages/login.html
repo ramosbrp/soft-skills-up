@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light" >
 
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -18,9 +18,43 @@
 </head>
 
 <body>
-    
+    <header class="header light-theme">
+        <nav>
+            <a href="../index.html" class="">Início</a>
+            <a href="../pages/eventos.html" class="">Eventos</a>
+            <a href="#section4" class="">Preços</a>
+
+        </nav>
+
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="themeToggle">
+                <input type="checkbox" id="themeToggle" />
+                <div class="slider round"></div>
+            </label>
+            <em>Ativar o modo escuro!</em>
+        </div>
+
+        <div id="login1">
+
+            <!-- Link de Login visível quando não logado -->
+            <a href="#" id="loginLink">Login
+                <img src="/assets/login.png" alt="">
+            </a>
+        </div>
+
+        <!-- Menu do usuário visível quando logado -->
+        <div id="userMenu" class="user-menu" style="display: none;">
+            <button id="userButton"> <img src="../images/temas-menu.png" alt="Abrir menu"></button>
+            <div id="userDropdown" class="dropdown-content" style="display: none;">
+                <a href="/pages/consulta_usr.html">Consulta de Usuário</a>
+                <a href="/pages/log_user.html">Log de Usuário</a>
+                <a href="/pages/app.html">App</a>
+                <a href="#" id="desconectar">Desconectar</a>
+            </div>
+        </div>
+    </header>
     <section class="loginEcadastro">
-        <div class="container">
+        <div class="container principal">
 
             <div class="forms-container">
                 <div class="signin-signup">
@@ -131,7 +165,7 @@
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
-                        
+
                         <div class="input-field password-field">
                             <i class="fas fa-lock"></i>
                             <input type="password" placeholder="Senha" id="signupPassword" name="signupPassword"
@@ -141,8 +175,8 @@
                         </div>
                         <div class="input-field password-field">
                             <i class="fas fa-lock"></i>
-                            <input type="password" placeholder="Repita a senha" id="reSignupPassword" name="reSignupPassword"
-                                required>
+                            <input type="password" placeholder="Repita a senha" id="reSignupPassword"
+                                name="reSignupPassword" required>
                             <span class="error-message"></span> <!-- Elemento de mensagem de erro -->
                             <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         </div>
@@ -154,7 +188,7 @@
                         <!-- <span class="success-message"></span> <!-- Elemento de mensagem de sucesso -->
                         <!--</div>-->
                         <input type="submit" class="btn" id='cadastrar' value="Enviar" />
-                        <input type="reset" class="btn" value="Limpar Informações"/>
+                        <input type="reset" class="btn" value="Limpar Informações" />
                     </form>
                 </div>
             </div>
@@ -183,6 +217,7 @@
                 </div>
             </div>
         </div>
+        <script src="../js/script.js"></script>
         <script type="module" src="../js/logincadastroapp.js"></script>
         <script type="module" src="../js/header.js"></script>
     </section>
