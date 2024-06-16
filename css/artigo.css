@@ -1,67 +1,67 @@
  body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--branco2);
-            color: var(--preto);
-        }
+     font-family: 'Arial', sans-serif;
+     margin: 0;
+     padding: 0;
+     background-color: var(--background-color);
+     color: var(--text-color);
+ }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: var(--branco);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
+ .container {
+     max-width: 800px;
+     margin: 0 auto;
+     padding: 20px;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     border-radius: 10px;
+     margin-top: 100px;
+ }
 
-        .header-artigo {
-            background-color: var(--laranja);
-            color: var(--branco);
-            padding: 20px;
-            text-align: center;
-            border-radius: 10px 10px 0 0;
-        }
+ .header-artigo {
+     background-color: var(--primary-color);
+     color: var(--title-color);
+     padding: 20px;
+     text-align: center;
+     border-radius: 10px 10px 0 0;
+ }
 
-        .header h1 {
-            margin: 0;
-        }
+ .header h1 {
+     margin: 0;
+ }
 
-        .content {
-            padding: 20px;
-        }
+ .content {
+     padding: 20px;
+ }
 
-        .content img,
-        .content video {
-            max-width: 100%;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
+ .content img,
+ .content video {
+     max-width: 100%;
+     border-radius: 10px;
+     margin-bottom: 20px;
+ }
 
-        .content h2 {
-            color: var(--laranja);
-        }
+ .content h2 {
+     color: var(--title-color);
+ }
 
-        .content p {
-            line-height: 1.6;
-        }
+ .content p {
+     line-height: 1.6;
+ }
 
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-        }
+ .footer {
+     text-align: center;
+     margin-top: 20px;
+ }
 
-        .footer button {
-            background-color: var(--laranja);
-            color: var(--branco);
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+ .footer button {
+     background-color: var(--primary-color);
+     color: var(--branco);
+     border: none;
+     padding: 15px 30px;
+     font-size: 18px;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+ }
 
-        .footer button:hover {
-            background-color: darken(var(--laranja), 10%);
-        }
+ .footer button:hover {
+     background-color: darken(var(--secondary-color), 10%);
+ }

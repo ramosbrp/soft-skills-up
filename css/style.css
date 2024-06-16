@@ -70,13 +70,14 @@ header {
     flex-flow: row;
     justify-content: center;
     align-items: center;
-    background-color: var(--header-background-color);
     color: var(--text-color);
     width: 100vw;
-    height: 20vh;
+    height: 10vh;
     position: fixed;
     top: 0;
     z-index: 1;
+    background-color: var(--background-color);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4); /* Sombra na borda inferior */
 }
 
 header nav {

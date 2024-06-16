@@ -2,22 +2,15 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: black;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
-
-
-nav a {
-    margin: 0 15px;
-    color: white;
-    text-decoration: none;
-    font-size: 22px;
-}
 
 .main {
     padding: 20px;
     margin-top: 200px;
+    height: 100vh;
 }
 
 .score {
@@ -35,7 +28,6 @@ nav a {
 }
 
 .app-opcoes {
-    background: white;
     padding: 15px;
     margin: 10px 0;
     border-radius: 8px;
@@ -49,8 +41,8 @@ nav a {
 #enviar-resposta {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: var(--laranja);
-    color: var(--text-color);
+    background-color: var(--primary-color);
+    color: var(--input-text);
     border: none;
     border-radius: 5px;
     cursor: pointer;

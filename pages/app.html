@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="light" >
 
 <head>
     <meta charset="UTF-8">
@@ -20,32 +20,39 @@
     <header class="header">
         <nav>
             <a href="../index.html" class="">Início</a>
-            <a href="#" class="">Eventos</a>
-            <a href="#" class="">Preços</a>
-            <a href="#" class="">Skills</a>
+            <a href="../pages/eventos.html" class="">Eventos</a>
+            <a href="#section4" class="">Preços</a>
+
         </nav>
-        <div class="score">
-            Score: <span id="score">0</span>
+
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="themeToggle">
+                <input type="checkbox" id="themeToggle" />
+                <div class="slider round"></div>
+            </label>
+            <em>Ativar o modo escuro!</em>
         </div>
 
         <div id="login1">
 
             <!-- Link de Login visível quando não logado -->
-            <a href="" id="loginLink">Login
+            <a href="#" id="loginLink">Login
                 <img src="/assets/login.png" alt="">
             </a>
         </div>
 
         <!-- Menu do usuário visível quando logado -->
-        <div id="userMenu" class="user-menu " style="display: none;">
+        <div id="userMenu" class="user-menu" style="display: none;">
             <button id="userButton"> <img src="../images/temas-menu.png" alt="Abrir menu"></button>
             <div id="userDropdown" class="dropdown-content" style="display: none;">
-                <a href="./consulta_usr.html">Consulta de Usuário</a>
-                <a href="./log_user.html">Log de Usuário</a>
+                <a href="/pages/consulta_usr.html">Consulta de Usuário</a>
+                <a href="/pages/log_user.html">Log de Usuário</a>
+                <a href="/pages/app.html">App</a>
                 <a href="#" id="desconectar">Desconectar</a>
             </div>
         </div>
     </header>
+
 
     <main class="main">
 
@@ -77,7 +84,7 @@
     </main>
 
 
-    <!-- <script src="../js/script.js"></script> -->
+    <script src="../js/script.js"></script>
     <script type="module" src="../js/header.js"></script>
     <script src="../js/app.js"></script>
 </body>

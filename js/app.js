@@ -64,7 +64,7 @@ const mostrarPergunta = (questionData) => {
         const label = document.createElement('label');
         const optionContainer = document.createElement('div');
         const p = document.createElement('p');
-        const level = document.createElement('input');
+        // const level = document.createElement('input');
 
         //Cria um elemento de rádio para cada opção
         optionElement.type = 'radio';
@@ -85,7 +85,7 @@ const mostrarPergunta = (questionData) => {
         optionContainer.appendChild(label);
         optionContainer.appendChild(p);
         optionsContainer.appendChild(optionContainer);
-        optionsContainer.appendChild(level);
+        // optionsContainer.appendChild(level);
         optionContainer.setAttribute('data-score', option.points);
     });
 }

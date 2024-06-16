@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-br" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Artigo/Vídeo Antes do Quiz</title>
-   
+
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/artigo.css">
 </head>
@@ -15,11 +15,19 @@
     <header class="header">
         <nav>
             <a href="../index.html" class="">Início</a>
-            <a href="#" class="">Eventos</a>
-            <a href="" class="">Preços</a>
-            <a href="#" class="">Skills</a>
-            
+            <a href="../pages/eventos.html" class="">Eventos</a>
+            <a href="#section4" class="">Preços</a>
+
         </nav>
+
+        <div class="theme-switch-wrapper">
+            <label class="theme-switch" for="themeToggle">
+                <input type="checkbox" id="themeToggle" />
+                <div class="slider round"></div>
+            </label>
+            <em>Ativar o modo escuro!</em>
+        </div>
+
         <div id="login1">
 
             <!-- Link de Login visível quando não logado -->
@@ -35,7 +43,7 @@
                 <a href="/pages/consulta_usr.html">Consulta de Usuário</a>
                 <a href="/pages/log_user.html">Log de Usuário</a>
                 <a href="/pages/app.html">App</a>
-                <a href="#" id="desconectar" >Desconectar</a>
+                <a href="#" id="desconectar">Desconectar</a>
             </div>
         </div>
     </header>
@@ -47,20 +55,36 @@
         <div class="content">
             <!-- Escolha entre um artigo ou um vídeo -->
             <h2>Artigo Inspirador</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel risus nec nulla ultrices gravida.
-                Integer vehicula diam et eros malesuada, id vestibulum purus dignissim. Proin at libero eu nunc interdum
-                feugiat a ac libero. Curabitur dignissim dolor et libero varius, non commodo turpis ultricies.</p>
+            <p>As soft skills, também conhecidas como habilidades interpessoais, são essenciais para a gestão eficaz de
+                equipes. Elas incluem competências como comunicação, empatia, liderança e resolução de conflitos, que
+                são cruciais para criar um ambiente de trabalho harmonioso e produtivo.</p>
+            <p>Uma das habilidades mais importantes para um gestor de equipe é a comunicação. Ser capaz de transmitir
+                informações de forma clara e eficaz ajuda a evitar mal-entendidos e a garantir que todos os membros da
+                equipe estejam alinhados com os objetivos do projeto. Além disso, a comunicação aberta e honesta promove
+                um ambiente de confiança e colaboração.</p>
+            <p>A empatia é outra habilidade vital. Um gestor empático é capaz de compreender e considerar as
+                perspectivas e sentimentos dos membros da equipe, o que ajuda a criar um ambiente de trabalho mais
+                inclusivo e motivador. Isso também facilita a resolução de conflitos, pois o gestor pode mediar disputas
+                de maneira justa e equilibrada.</p>
+            <p>Habilidades de liderança são essenciais para inspirar e motivar a equipe. Um bom líder sabe como delegar
+                tarefas de maneira eficaz, reconhecer e valorizar as contribuições de cada membro da equipe, e fornecer
+                feedback construtivo que ajuda no desenvolvimento profissional dos colaboradores.</p>
+            <p>Por fim, a resolução de conflitos é uma habilidade crucial para a gestão de equipes. Conflitos são
+                inevitáveis em qualquer ambiente de trabalho, mas um gestor habilidoso sabe como abordar e resolver
+                esses problemas de maneira que fortaleça a coesão da equipe e promova um ambiente de trabalho positivo.
+            </p>
+            <p>Em resumo, desenvolver soft skills é fundamental para qualquer gestor que deseja liderar uma equipe de
+                maneira eficaz. Investir no aprimoramento dessas habilidades pode resultar em uma equipe mais motivada,
+                produtiva e coesa.</p>
             <img src="https://via.placeholder.com/800x400.png?text=Imagem+do+Artigo" alt="Imagem do Artigo">
 
             <!-- Para o caso de usar um vídeo em vez do artigo -->
-            <!--
             <h2>Vídeo Educativo</h2>
             <video controls>
                 <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
                 Seu navegador não suporta o elemento de vídeo.
             </video>
             <p>Assista ao vídeo para se preparar para o quiz.</p>
-            -->
         </div>
         <div class="footer">
             <button onclick="location.href='app.html'">Ir para o Quiz</button>
