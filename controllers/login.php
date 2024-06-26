@@ -7,10 +7,10 @@ $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
 $dotenv->load();
 
 // Agora você pode acessar as variáveis como variáveis de ambiente
-$dbHost = $_ENV['DB_HOST'];
-$dbDatabase = $_ENV['DB_DATABASE'];
-$dbUser = $_ENV['DB_USERNAME'];
-$dbPassword = $_ENV['DB_PASSWORD'];
+$dbHost = getenv('DB_HOST');
+$dbDatabase = getenv('DB_DATABASE');
+$dbUser = getenv('DB_USERNAME');
+$dbPassword = getenv('DB_PASSWORD');
 
 // print_r($_ENV); // Lista todas as variáveis de ambiente para testar apenas
 
