@@ -384,10 +384,10 @@ const logar = async (formElement) => {
       method: 'POST',
       body: formData
     })
-    if (!response.ok)
-      throw new Error("Error");
     var result = response.text();
     console.log(result);
+    if (!response.ok)
+      throw new Error("Error");
     const data = await response.json();
 
     if (data.success) {
