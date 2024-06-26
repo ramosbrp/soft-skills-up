@@ -386,7 +386,8 @@ const logar = async (formElement) => {
     })
     if (!response.ok)
       throw new Error("Error");
-
+    var result = response.text();
+    console.log(result);
     const data = await response.json();
 
     if (data.success) {
