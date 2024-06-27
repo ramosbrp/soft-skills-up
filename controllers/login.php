@@ -1,20 +1,17 @@
 <?php
 session_start();
 
-require_once '../vendor/autoload.php';
-
 use ApplicationInsights\Telemetry_Client;
 
+require_once '../vendor/autoload.php';
 
-// Verificar se está em ambiente de desenvolvimento
-$appEnv = getenv('APP_ENV');
-if ($appEnv == 'development') {
-    // Carregar variáveis de ambiente do arquivo .env apenas em desenvolvimento
+// Apenas carregar dotenv em ambientes que não são de produção
+if (getenv('APP_ENV') === 'development') {
     $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
     $dotenv->load();
 }
 
-$instrumentalKey = $_ENV['INSTRUMENTATION_KEY'];
+$instrumentalKey = getenv('INSTRUMENTATION_KEY');
 
 // Configuração do Application Insights
 $client = new Telemetry_Client();
@@ -23,10 +20,10 @@ $client->getContext()->setInstrumentationKey($instrumentalKey);
 // Função para criar conexão com o banco de dados
 function createDatabaseConnection()
 {
-    $dbHost = $_ENV['DB_HOST'];
-    $dbDatabase = $_ENV['DB_DATABASE'];
-    $dbUser = $_ENV['DB_USERNAME'];
-    $dbPassword = $_ENV['DB_PASSWORD'];
+    $dbHost = getenv('DB_HOST');
+    $dbDatabase = getenv('DB_DATABASE');
+    $dbUser = getenv('DB_USERNAME');
+    $dbPassword = getenv('DB_PASSWORD');
 
     global $client;  // Usar o cliente de telemetria global
     try {
@@ -38,6 +35,7 @@ function createDatabaseConnection()
         $client->trackException($e);
         error_log("Error connecting to SQL Server: " . $e->getMessage());
         die("Error connecting to SQL Server.");
+        // echo"<script>console.log()</script>";
     }
 }
 
