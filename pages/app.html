@@ -40,7 +40,9 @@
                 <img src="/assets/login.png" alt="">
             </a>
         </div>
-
+        <div class="score" >
+            <span  id="score"></span>
+        </div>
         <!-- Menu do usuário visível quando logado -->
         <div id="userMenu" class="user-menu" style="display: none;">
             <button id="userButton"> <img src="../images/temas-menu.png" alt="Abrir menu"></button>
@@ -59,7 +61,7 @@
         <section id="app-section1">
             <h2>Bem-vindo ao Quiz!</h2>
             <p>Complete as perguntas abaixo para testar seus conhecimentos.</p>
-            <p><strong>Pergunta 1 de 5</strong></p>
+            <p><strong>Pergunta <span id="countQuestion" ></span> de 5</strong></p>
         </section>
 
         <section id="app-section2">

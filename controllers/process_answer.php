@@ -1,38 +1,55 @@
 <?php
 
+use ApplicationInsights\Telemetry_Client;
+
 require_once '../vendor/autoload.php';
 
-$dotent = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotent->load();
+// Apenas carregar dotenv em ambientes que não são de produção
+if (getenv('APP_ENV') === 'development') {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+}
 
-// Agora você pode acessar as variáveis como variáveis de ambiente
-$dbHost = $_ENV['DB_HOST'];
-$dbDatabase = $_ENV['DB_DATABASE'];
-$dbUser = $_ENV['DB_USERNAME'];
-$dbPassword = $_ENV['DB_PASSWORD'];
+$instrumentalKey = getenv('INSTRUMENTATION_KEY');
 
-// print_r($_ENV); // Lista todas as variáveis de ambiente para testar apenas
+// Configuração do Application Insights
+$client = new Telemetry_Client();
+$client->getContext()->setInstrumentationKey($instrumentalKey);
+
+function createDatabaseConnection()
+{
+    $dbHost = getenv('DB_HOST');
+    $dbDatabase = getenv('DB_DATABASE');
+    $dbUser = getenv('DB_USERNAME');
+    $dbPassword = getenv('DB_PASSWORD');
 
 
-try {
-    $conn = new PDO("sqlsrv:server = tcp:$dbHost; Database = $dbDatabase", $dbUser, $dbPassword);
-} catch (Exception $e) {
-    print ("Error connecting to SQL Server.");
-    die(print_r($e->getMessage()));
+
+    global $client;  // Usar o cliente de telemetria global
+    try {
+        $conn = new PDO("sqlsrv:server = tcp:$dbHost; Database = $dbDatabase", $dbUser, $dbPassword);
+
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $conn;
+    } catch (Exception $e) {
+        $client->trackException($e);
+        error_log("Error connecting to SQL Server: " . $e->getMessage());
+        die("Error connecting to SQL Server.");
+        // echo"<script>console.log()</script>";
+    } finally {
+        $client->flush();
+    }
 }
 
 // Requisição
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Acessar os dados enviados via POST
-    $score = isset($_POST['score']) ? intval($_POST['score']) : 0;
-    $level = isset($_POST['level']) ? intval($_POST['level']) : 0;
-    $optionId = isset($_POST['optionId']) ? intval($_POST['optionId']) : 0;
-    $level++;
 
+function getQuestion($level)
+{
+    global $client;  // Usar o cliente de telemetria global
+    $conn = createDatabaseConnection();
     try {
         $level = isset($level) ? $level : 1;
-
-        $query = "SELECT id, question_text, level FROM questions WHERE level = :level";
+        $query = "SELECT question_id, question_text, level FROM questions WHERE level = :level";
         $stmt = $conn->prepare($query);
         $stmt->bindParam(':level', $level, PDO::PARAM_INT);
         $stmt->execute();
@@ -40,24 +57,40 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $question = $stmt->fetch(PDO::FETCH_ASSOC);
         if ($question) {
 
-            $questionId = $question["id"];
-            $options_query = "SELECT id, option_text, points FROM options WHERE question_id =:questionId";
+            $questionId = $question["question_id"];
+            $options_query = "SELECT question_id, option_text, points FROM options WHERE question_id =:questionId";
             $stmt = $conn->prepare($options_query);
             $stmt->bindParam(":questionId", $questionId, PDO::PARAM_INT);
             $stmt->execute();
 
             $options = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $responseArray = [
+            return [
                 'success' => true,
                 'question' => $question,
                 'options' => $options
             ];
         }
     } catch (Exception $e) {
-        $responseArray = ['success' => false, 'message' => "Pergunta não encontrada"];
-    }
-    echo json_encode($responseArray);
+        // echo "<script>console.log('Exception: ' $e)</script>";
+        $client->trackException($e);
+        error_log("Database query error: " . $e->getMessage());
 
+        return ['success' => false, 'message' => 'Erro ao acessar o banco de dados.'];
+    } finally {
+        $client->flush();
+    }
 }
 
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $score = isset($_POST['score']) ? intval($_POST['score']) : 0;
+    $level = isset($_POST['level']) ? intval($_POST['level']) : 0;
+    $optionId = isset($_POST['optionId']) ? intval($_POST['optionId']) : 0;
+    $level++;
+
+    // echo "<script>console.log('Level: ' $level)</script>";
+    $responseArray = getQuestion($level);
+    echo json_encode($responseArray);
+}

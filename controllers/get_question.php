@@ -71,7 +71,7 @@ function getQuestion($level)
             return ['success' => false, 'message' => "Pergunta não encontrada"];
         }
     } catch (PDOException $e) {
-        echo "<script>console.log('Exception: ' $e)</script>";
+        // echo "<script>console.log('Exception: ' $e)</script>";
         $client->trackException($e);
         error_log("Database query error: " . $e->getMessage());
 

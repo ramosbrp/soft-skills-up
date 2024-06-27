@@ -8,6 +8,7 @@ const scoreElement = document.getElementById('score');
 const questionText = document.getElementById('question-text');
 const optionsContainer = document.getElementById('options-container');
 const level = document.getElementById('level');
+const countQuestion = document.getElementById('countQuestion');
 let score = 0;
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -38,12 +39,17 @@ const carregarPergunta = async () => {
             },
             body: 'level=' + level
         });
+
+        // Capturar Erro
+        // console.log(response);
         if (!response.ok)
             throw new Error("Error");
 
         const data = await response.json();
         mostrarPergunta(data);
         toastr.success('Pergunta pronta!!');
+
+        countQuestion.textContent = level;
 
     } catch (error) {
         console.error('Error: ', error);
@@ -52,6 +58,7 @@ const carregarPergunta = async () => {
 }
 
 const mostrarPergunta = (questionData) => {
+    // console.log(questionData.question.question_text)
     questionText.textContent = questionData.question.question_text;
 
     level.value = questionData.question.level;
@@ -93,8 +100,10 @@ const mostrarPergunta = (questionData) => {
 const enviarResposta_ = async () => {
     let selectedOptionScore = 0;
     let selectedOptionId = 0;
-    let questionLevel = 1;
-    
+    let questionLevel = level.value;
+
+    console.log(questionLevel)
+
     const quizOptions = Array.from(document.querySelectorAll('.quiz-option'));
 
     quizOptions.forEach((option) => {
@@ -104,13 +113,14 @@ const enviarResposta_ = async () => {
             // selectedOptionId = ;
         }
     })
+
     if (score == 0) {
         score = selectedOptionScore;
     } else {
-        console.log(score);
         score += selectedOptionScore;
-        console.log(score);
     }
+    
+
     scoreElement.textContent = score;
 
     try {
@@ -122,15 +132,22 @@ const enviarResposta_ = async () => {
             body: `score=${selectedOptionScore}&level=${questionLevel}&optionId=${selectedOptionId}`
         });
 
+
+        // console.log('Response: ', response.text())
         if (!response.ok)
             throw new Error("Error");
 
         const data = await response.json();
+        console.log(data);
         mostrarPergunta(data);
+
+        countQuestion.textContent = level.value;
 
     } catch (error) {
         console.error('Error: ', error);
         toastr.error('An erro occurred during response');
     }
 }
+
+
 
