@@ -424,6 +424,7 @@ const cadastrar = async (formElement) => {
       method: 'POST',
       body: formData
     });
+    console.log(response.text())
     if (!response.ok)
       throw new Error("Error");
 
