@@ -73,10 +73,9 @@ function validateUser($login, $password)
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
-    $senha = filter_input(INPUT_POST, 'senha', FILTER_SANITIZE_STRING);
+    $login = htmlspecialchars(filter_input(INPUT_POST, 'login', FILTER_UNSAFE_RAW));
+    $senha = htmlspecialchars(filter_input(INPUT_POST, 'senha', FILTER_UNSAFE_RAW));
 
     $responseArray = validateUser($login, $senha);
     echo json_encode($responseArray);
 }
-?>
