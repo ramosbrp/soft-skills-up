@@ -68,12 +68,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($stmt->execute()) {
             $responseArray = ['success' => true, 'message' => 'Cadastro realizado com sucesso!'];
-            echo json_encode($responseArray);
-            // echo"<script>console.log('ok')</script>";
+            // echo json_encode($responseArray);
+            echo"<script>console.log('if')</script>";
         } else {
             throw new Exception("Failed to execute the SQL statement.");
         }
     } catch (Exception $e) {
-        echo json_encode(['success' => false, 'message' => $e->getMessage()]);
+        echo"<script>console.log('$e')</script>";
+        // echo json_encode(['success' => false, 'message' => $e->getMessage()]);
     }
 }
