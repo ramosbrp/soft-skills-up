@@ -1,18 +1,21 @@
 <?php
 session_start();
 
-header('Content-Type: application/json');
+use ApplicationInsights\Telemetry_Client;
 
 require_once '../vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->load();
+// Apenas carregar dotenv em ambientes que não são de produção
+if (getenv('APP_ENV') === 'development') {
+    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->load();
+}
 
 // Agora você pode acessar as variáveis como variáveis de ambiente
-$dbHost = $_ENV['DB_HOST'];
-$dbDatabase = $_ENV['DB_DATABASE'];
-$dbUser = $_ENV['DB_USERNAME'];
-$dbPassword = $_ENV['DB_PASSWORD'];
+$dbHost = getenv('DB_HOST');
+$dbDatabase = getenv('DB_DATABASE');
+$dbUser = getenv('DB_USERNAME');
+$dbPassword = getenv('DB_PASSWORD');
 
 
 // PHP Data Objects(PDO) Sample Code:
@@ -66,6 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($stmt->execute()) {
             $responseArray = ['success' => true, 'message' => 'Cadastro realizado com sucesso!'];
             echo json_encode($responseArray);
+            // echo"<script>console.log('ok')</script>";
         } else {
             throw new Exception("Failed to execute the SQL statement.");
         }
