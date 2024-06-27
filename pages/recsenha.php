@@ -77,13 +77,13 @@
                     $mail->isSMTP();
                     $mail->Host = 'smtp-mail.outlook.com'; // Endereço do servidor SMTP
                     $mail->SMTPAuth = true; // Ativar autenticação SMTP
-                    $mail->Username = 'softskillsgp8@hotmail.com';
-                    $mail->Password = 'softskills1234';
+                    $mail->Username = getenv('MailUser');
+                    $mail->Password = getenv('MailPassword');
                     $mail->SMTPSecure = 'tls'; // Habilitar criptografia TLS
                     $mail->Port = 587; // Porta SMTP - 587 é comum para TLS
         
                     // Remetente e destinatário
-                    $mail->setFrom('softskillsgp8@hotmail.com', 'Soft Skills'); // Seu e-mail e nome
+                    $mail->setFrom(getenv('MailUser'), 'Soft Skills'); // Seu e-mail e nome
                     $mail->addAddress($email); // Destinatário
         
                     // Conteúdo do e-mail
