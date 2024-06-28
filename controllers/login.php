@@ -65,15 +65,34 @@ function validateUser($login, $password)
                 $logger->logEvent($userID, $action, $details);
                 return ['success' => true, 'message' => 'Login bem-sucedido!', 'username' => $login];
             } else {
+                $userID = $user['id']; // ID do usuário que logou
+                $action = "Login";
+                $details = "Senha incorreta.";
+
+                $logger->logEvent($userID, $action, $details);
                 return ['success' => false, 'message' => 'Senha incorreta.'];
             }
         } else {
+
+            $userID = null; // ID do usuário que logou
+            $action = "Login";
+            $details = "Usuário $login não encontrado.";
+
+            $logger->logEvent($userID, $action, $details);
             return ['success' => false, 'message' => "Usuário $login não encontrado."];
         }
     } catch (PDOException $e) {
         // $client->trackException($e);
-        error_log("Database query error: " . $e->getMessage());
-        return ['success' => false, 'message' => 'Erro ao acessar o banco de dados.'];
+        
+        $message = $e->getMessage();
+        $userID = $user['id'] ? $user['id'] : null; // ID do usuário que logou
+        $action = "Login";
+        $details = "Erro inesperado: $message";
+
+        $logger->logEvent($userID, $action, $details);
+
+        error_log("Database query error: " . $message);
+        return ['success' => false, 'message' => "Erro ao consultar banco de dados."];
     }
 }
 
