@@ -57,6 +57,7 @@
       <thead>
         <tr>
           <th>Data e Hora</th>
+          <th>Usuário Id</th>
           <th>Evento</th>
           <th>Detalhes</th>
         </tr>
@@ -67,50 +68,10 @@
     </table>
   </div>
 
-  <script>
-    // Função para recuperar e exibir as informações de login do localStorage
-    function displayLoginActivity() {
-      var logTableBody = document.getElementById('logTableBody');
-
-      // Recupera as informações de login do localStorage
-      var loginLog = JSON.parse(localStorage.getItem('loginLog')) || [];
-
-      // Limpa a tabela antes de adicionar as novas entradas
-      logTableBody.innerHTML = '';
-
-      // Itera sobre os registros de atividades e os adiciona à tabela
-      loginLog.forEach(function (activity) {
-        var row = logTableBody.insertRow();
-        row.insertCell().textContent = new Date(activity.loginTime).toLocaleString();
-        row.insertCell().textContent = activity.username;
-      });
-    }
-
-    // Função para registrar a atividade de login
-    function logLoginActivity(username) {
-      // Recupera os dados do usuário do localStorage
-      var usuario = JSON.parse(localStorage.getItem('usuario'));
-
-      // Adiciona a nova atividade de login ao registro
-      var loginLog = JSON.parse(localStorage.getItem('loginLog')) || [];
-      loginLog.push({
-        username: usuario.name, // Supondo que o nome do usuário esteja armazenado na chave 'nome'
-        loginTime: Date.now()
-      });
-
-      // Salva o registro atualizado de atividades de login no localStorage
-      localStorage.setItem('loginLog', JSON.stringify(loginLog));
-    }
-
-    // Simulação de login bem-sucedido
-    //logLoginActivity(); // Aqui deve chamar a função passando o nome de usuário após uma verificação bem-sucedida
-
-    // Chama a função para exibir as informações de login quando a página é carregada
-    window.onload = displayLoginActivity;
-  </script>
 
   <script src="../js/script.js"></script>
   <script type="module" src="../js/header.js"></script>
+  <script type="module" src="../js/log_user.js"></script>
 </body>
 
 </html>
