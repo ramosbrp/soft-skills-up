@@ -1,5 +1,9 @@
 <?php
+
 session_start();
+
+use classes\Logger;
+use classes\DatabaseConnection;
 
 use ApplicationInsights\Telemetry_Client;
 
@@ -11,28 +15,22 @@ if (getenv('APP_ENV') === 'development') {
     $dotenv->load();
 }
 
-$instrumentalKey = getenv('INSTRUMENTATION_KEY');
-
 // Configuração do Application Insights
-$client = new Telemetry_Client();
-$client->getContext()->setInstrumentationKey($instrumentalKey);
+// $client = new Telemetry_Client();
+// $instrumentalKey = getenv('INSTRUMENTATION_KEY');
+// $client->getContext()->setInstrumentationKey($instrumentalKey);
 
 // Função para criar conexão com o banco de dados
 function createDatabaseConnection()
 {
-    $dbHost = getenv('DB_HOST');
-    $dbDatabase = getenv('DB_DATABASE');
-    $dbUser = getenv('DB_USERNAME');
-    $dbPassword = getenv('DB_PASSWORD');
 
     global $client;  // Usar o cliente de telemetria global
     try {
-        $conn = new PDO("sqlsrv:server = tcp:$dbHost; Database = $dbDatabase", $dbUser, $dbPassword);
-
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db = new DatabaseConnection();
+        $conn = $db->getConnection();
         return $conn;
     } catch (PDOException $e) {
-        $client->trackException($e);
+        // $client->trackException($e);
         error_log("Error connecting to SQL Server: " . $e->getMessage());
         die("Error connecting to SQL Server.");
         // echo"<script>console.log()</script>";
@@ -42,9 +40,9 @@ function createDatabaseConnection()
 // Função para validar o login do usuário
 function validateUser($login, $password)
 {
-    global $client;  // Usar o cliente de telemetria global
     $conn = createDatabaseConnection();
 
+    $logger = new Logger();
     try {
         $query = "SELECT * FROM usuario WHERE login = :login";
         $stmt = $conn->prepare($query);
@@ -58,6 +56,13 @@ function validateUser($login, $password)
             if (password_verify($password, $user['senha'])) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $login;
+
+
+                $userID = $user['id']; // ID do usuário que logou
+                $action = "Login";
+                $details = "Login efetuado com sucesso.";
+
+                $logger->logEvent($userID, $action, $details);
                 return ['success' => true, 'message' => 'Login bem-sucedido!', 'username' => $login];
             } else {
                 return ['success' => false, 'message' => 'Senha incorreta.'];
@@ -66,7 +71,7 @@ function validateUser($login, $password)
             return ['success' => false, 'message' => "Usuário $login não encontrado."];
         }
     } catch (PDOException $e) {
-        $client->trackException($e);
+        // $client->trackException($e);
         error_log("Database query error: " . $e->getMessage());
         return ['success' => false, 'message' => 'Erro ao acessar o banco de dados.'];
     }
