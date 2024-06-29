@@ -63,56 +63,15 @@
           <th>Ações</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="user-table-body" >
         <!-- linhas de usuário aqui -->
       </tbody>
     </table>
   </div>
 
-  <script>
-    // Função para exibir os usuários cadastrados na tabela de usuários
-    function displayUsers() {
-      var userTableBody = document.querySelector("#userTable tbody");
+  
 
-      // Limpa as linhas da tabela antes de adicionar os usuários
-      userTableBody.innerHTML = "";
-
-      // Itera sobre os itens do localStorage
-      for (var i = 0; i < localStorage.length; i++) {
-        var username = localStorage.key(i); // Obtém o nome de usuário
-        var userDetails;
-
-        // Tenta analisar os detalhes do usuário do localStorage
-        try {
-          userDetails = JSON.parse(localStorage.getItem(username)); // Obtém os detalhes do usuário
-        } catch (error) {
-          console.error("Erro ao analisar os detalhes do usuário:", error);
-          continue; // Pula para o próximo usuário se ocorrer um erro de análise JSON
-        }
-
-        // Cria uma nova linha na tabela para o usuário
-        var newRow = userTableBody.insertRow();
-        newRow.innerHTML = `
-          <td>${username}</td>
-          <td>${userDetails.email}</td>
-          <td><button class="btn btn-sm btn-danger deleteBtn">Excluir</button></td>
-        `;
-      }
-
-      // Adiciona o evento de clique aos botões de exclusão
-      var deleteButtons = document.querySelectorAll(".deleteBtn");
-      deleteButtons.forEach(function (button) {
-        button.addEventListener("click", function () {
-          var usernameToDelete = button.parentElement.parentElement.cells[0].textContent;
-          localStorage.removeItem(usernameToDelete); // Remove o usuário do localStorage
-          displayUsers(); // Atualiza a tabela de usuários
-        });
-      });
-    }
-
-    window.onload = displayUsers;
-  </script>
-
+  <script src="../js/consultaUser.js"></script>
   <script src="../js/script.js"></script>
   <script type="module" src="../js/header.js"></script>
 </body>
